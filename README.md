@@ -4,7 +4,7 @@ Exercises and exams
 
 Courses:
 - [Working with Abstraction](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/WorkingWithAbstraction)<br/>
-- Inheritance<br/>
+- [Inheritance](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/Inheritance)<br/>
 - Encapsulation<br/>
 - Interfaces and Abstraction<br/>
 - Polymorphism<br/>
