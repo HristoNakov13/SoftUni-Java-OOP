@@ -13,16 +13,21 @@ public class Main {
         double height = Double.parseDouble(bfr.readLine());
 
 
-        Box box = new Box(length, width, height);
-        StringBuilder print = new StringBuilder();
+        try {
+            Box box = new Box(length, width, height);
+            StringBuilder print = new StringBuilder();
 
-        print.append(String.format("Surface Area - %.2f", box.calculateSurfaceArea()))
-                .append(System.lineSeparator())
-                .append(String.format("Lateral Surface Area - %.2f", box.calculateLateralSurfaceArea()))
-                .append(System.lineSeparator())
-                .append(String.format("Volume – %.2f", box.calculateVolume()));
+            print.append(String.format("Surface Area - %.2f", box.calculateSurfaceArea()))
+                    .append(System.lineSeparator())
+                    .append(String.format("Lateral Surface Area - %.2f", box.calculateLateralSurfaceArea()))
+                    .append(System.lineSeparator())
+                    .append(String.format("Volume – %.2f", box.calculateVolume()));
 
-        System.out.println(print.toString());
+            System.out.println(print.toString());
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
 
     }
 }
