@@ -98,7 +98,13 @@ public class Main {
 
             System.out.println(String.format("<%s> $%s", item.getKey(), sumValues));
 
-            item.getValue().entrySet().stream().sorted((e1, e2) -> e2.getKey().compareTo(e1.getKey())).forEach(i -> System.out.println("##" + i.getKey() + " - " + i.getValue()));
+            item.getValue()
+                    .entrySet()
+                    .stream()
+                    .sorted((e1, e2) -> e2.getKey()
+                            .compareTo(e1.getKey()))
+                    .forEach(i -> System.out.println(String.format("##%s - %d", i.getKey(), i.getValue())));
+
         }
     }
 }
