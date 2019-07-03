@@ -7,10 +7,11 @@ public class Coffee extends HotBeverage {
     static final BigDecimal COFFEE_PRICE = BigDecimal.valueOf(3.50);
     double caffeine;
 
-    public Coffee(String name, BigDecimal price, double milliliters) {
-        super(name, price, milliliters);
+    public Coffee(String name, double caffeine) {
+        super(name, COFFEE_PRICE, COFFEE_MILLILITERS);
 //        super.setPrice(COFFEE_PRICE);
 //        super.setMilliliters(COFFEE_MILLILITERS);
+        this.caffeine = caffeine;
     }
 
     public double getCaffeine() {

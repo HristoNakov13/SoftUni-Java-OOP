@@ -10,8 +10,8 @@ public class Cake extends Dessert {
 //•	double CAKE_CALORIES = 1000
 //•	BigDecimal CAKE_PRICE = 5
 
-    public Cake(String name, BigDecimal price, double grams, double calories) {
-        super(name, price, grams, calories);
+    public Cake(String name) {
+        super(name, CAKE_PRICE, CAKE_GRAMS, CAKE_CALORIES);
 //        super.setGrams(CAKE_GRAMS);
 //        super.setPrice(CAKE_PRICE);
 //        super.setCalories(CAKE_CALORIES);

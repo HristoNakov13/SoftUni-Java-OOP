@@ -14,7 +14,7 @@ public class Food extends Product{
         return grams;
     }
 
-    public void setGrams(double grams) {
-        this.grams = grams;
-    }
+//    public void setGrams(double grams) {
+//        this.grams = grams;
+//    }
 }

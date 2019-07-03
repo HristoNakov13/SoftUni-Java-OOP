@@ -14,7 +14,7 @@ public class Dessert extends Food {
         return calories;
     }
 
-    public void setCalories(double calories) {
-        this.calories = calories;
-    }
+//    public void setCalories(double calories) {
+//        this.calories = calories;
+//    }
 }
