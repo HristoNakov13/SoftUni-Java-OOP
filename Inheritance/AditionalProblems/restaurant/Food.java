@@ -15,6 +15,9 @@ public class Food extends Product {
     }
 
     public void setGrams(double grams) {
+        if (grams < 0) {
+            throw new IllegalArgumentException();
+        }
         this.grams = grams;
     }
 }

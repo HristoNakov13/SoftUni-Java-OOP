@@ -11,6 +11,13 @@ public class Product {
         this.price = price;
     }
 
+    public void setName(String name) {
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -20,6 +27,10 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) {
+
+        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.price = price;
     }
 }

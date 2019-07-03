@@ -15,6 +15,9 @@ public class Beverage extends Product {
     }
 
     public void setMilliliters(double milliliters) {
+        if (milliliters < 0) {
+            throw new IllegalArgumentException();
+        }
         this.milliliters = milliliters;
     }
 }

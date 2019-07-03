@@ -14,6 +14,9 @@ public class Dessert extends Food {
 //    }
 
     public void setCalories(double calories) {
+        if (calories > 0) {
+            throw new IllegalArgumentException();
+        }
         this.calories = calories;
     }
 }
