@@ -1,6 +1,6 @@
 package animals;
 
-public abstract class Animal implements SoundProducable{
+public abstract class Animal implements SoundProducable {
     private String name;
     private int age;
     private String gender;
@@ -11,29 +11,31 @@ public abstract class Animal implements SoundProducable{
         this.setGender(gender);
     }
 
-    public Animal(String name, int age) {
-        this.name = name;
-        this.age = age;
+    protected Animal(String name, int age) {
+        this.setName(name);
+        this.setAge(age);
     }
 
     public void setName(String name) {
-        if(name.isEmpty() || name.equals(" ")) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("Invalid input!");
         }
         this.name = name;
     }
 
     protected void setAge(int age) {
-        if(age < 0) {
+        if (age < 0) {
             throw new IllegalArgumentException("Invalid input!");
+
         }
         this.age = age;
     }
 
     protected void setGender(String gender) {
 
-        if(gender.isEmpty() || gender.equals(" ")) {
+        if (gender.isEmpty()) {
             throw new IllegalArgumentException("Invalid input!");
+
         }
         this.gender = gender;
     }
@@ -53,6 +55,6 @@ public abstract class Animal implements SoundProducable{
     @Override
     public String toString() {
         return String.format("%s%n%s %d %s"
-        , this.getClass().getSimpleName(), this.name, this.age, this.gender);
+                , this.getClass().getSimpleName(), this.name, this.age, this.gender);
     }
 }

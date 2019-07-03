@@ -3,7 +3,12 @@ package animals;
 public class Kitten extends Cat {
     public Kitten(String name, int age, String gender) {
         super(name, age);
-       this.setGender("Female");
+       super.setGender("Female");
+    }
+
+    public Kitten(String name, int age) {
+        super(name, age);
+        super.setGender("Female");
     }
 
     @Override
