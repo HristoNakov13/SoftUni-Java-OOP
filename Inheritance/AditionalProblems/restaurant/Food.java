@@ -2,7 +2,7 @@ package restaurant;
 
 import java.math.BigDecimal;
 
-public class Food extends Product {
+public class Food extends Product{
     private double grams;
 
     public Food(String name, BigDecimal price, double grams) {
@@ -15,9 +15,6 @@ public class Food extends Product {
     }
 
     public void setGrams(double grams) {
-        if (grams < 0) {
-            throw new IllegalArgumentException();
-        }
         this.grams = grams;
     }
 }

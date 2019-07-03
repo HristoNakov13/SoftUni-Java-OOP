@@ -7,22 +7,15 @@ public class Product {
     private BigDecimal price;
 
     public Product(String name, BigDecimal price) {
-        this.setName(name);
-        this.setPrice(price);
+        this.name = name;
+        this.price = price;
     }
 
     public void setName(String name) {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
         this.name = name;
     }
 
     public void setPrice(BigDecimal price) {
-
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException();
-        }
         this.price = price;
     }
 
@@ -33,6 +26,4 @@ public class Product {
     public BigDecimal getPrice() {
         return price;
     }
-
-
 }

@@ -3,17 +3,15 @@ package restaurant;
 import java.math.BigDecimal;
 
 public class Salmon extends MainDish {
-    static final double SALMON_GRAMS = 22;
+    static final double SALMON_GRAMS = 22.0;
 
     public Salmon(String name, BigDecimal price, double grams) {
         super(name, price, grams);
-        this.setGrams(SALMON_GRAMS);
+//        super.setGrams(SALMON_GRAMS);
     }
 
-    private void setSalmonGrams(double grams) {
-        if (grams < 0) {
-            throw new IllegalArgumentException();
-        }
-        super.setGrams(grams);
-    }
+//    @Override
+//    public double getGrams() {
+//        return SALMON_GRAMS;
+//    }
 }

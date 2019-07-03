@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Dessert extends Food {
     private double calories;
+
     public Dessert(String name, BigDecimal price, double grams, double calories) {
         super(name, price, grams);
         this.calories = calories;
@@ -14,9 +15,6 @@ public class Dessert extends Food {
     }
 
     public void setCalories(double calories) {
-        if (calories < 0) {
-            throw new IllegalArgumentException();
-        }
         this.calories = calories;
     }
 }
