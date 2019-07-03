@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Beverage extends Product {
     private double milliliters;
 
-    public Beverage(String name, BigDecimal price, double milliliters) {
+    protected Beverage(String name, BigDecimal price, double milliliters) {
         super(name, price);
         this.milliliters = milliliters;
     }
@@ -17,7 +17,7 @@ public class Beverage extends Product {
     public void setMilliliters(double milliliters) {
         if (milliliters < 0) {
             throw new IllegalArgumentException();
-        }
+      }
         this.milliliters = milliliters;
     }
 }

@@ -9,12 +9,12 @@ public class Dessert extends Food {
         this.calories = calories;
     }
 
-//    public double getCalories() {
-//        return calories;
-//    }
+    public double getCalories() {
+        return calories;
+    }
 
     public void setCalories(double calories) {
-        if (calories > 0) {
+        if (calories < 0) {
             throw new IllegalArgumentException();
         }
         this.calories = calories;

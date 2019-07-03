@@ -7,8 +7,8 @@ public class Product {
     private BigDecimal price;
 
     public Product(String name, BigDecimal price) {
-        this.name = name;
-        this.price = price;
+        this.setName(name);
+        this.setPrice(price);
     }
 
     public void setName(String name) {
@@ -16,6 +16,14 @@ public class Product {
             throw new IllegalArgumentException();
         }
         this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+
+        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.price = price;
     }
 
     public String getName() {
@@ -26,11 +34,5 @@ public class Product {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
 
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException();
-        }
-        this.price = price;
-    }
 }
