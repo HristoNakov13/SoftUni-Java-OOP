@@ -6,7 +6,7 @@ Courses:
 - [Working with Abstraction](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/WorkingWithAbstraction)<br/>
 - [Inheritance](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/Inheritance)<br/>
 - [Encapsulation](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/Encapsulation)<br/>
-- Interfaces and Abstraction<br/>
+- [Interfaces and Abstraction](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/InterfacesAndAbstraction)<br/>
 - Polymorphism<br/>
 - SOLID<br/>
 - Reflection and Annotation<br/>
