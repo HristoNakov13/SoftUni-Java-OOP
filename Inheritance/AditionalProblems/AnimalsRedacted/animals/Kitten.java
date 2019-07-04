@@ -1,13 +1,15 @@
 package animals;
 
 public class Kitten extends Cat {
-    public Kitten(String name, int age, String gender) throws InvalidInput {
-        this(name, age);
-    }
+    private static final String DEFAULT_KITTEN_GENDER = "Female";
 
-    public Kitten(String name, int age) throws InvalidInput {
-        super(name, age);
-        super.setGender("Female");
+    public Kitten(String name, int age) {
+        super(name, age, DEFAULT_KITTEN_GENDER);
+
+    }
+    public Kitten(String name, int age, String gender) {
+        super(name, age, gender);
+
     }
 
 //    @Override

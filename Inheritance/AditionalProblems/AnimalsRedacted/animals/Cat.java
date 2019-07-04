@@ -1,12 +1,8 @@
 package animals;
 
 public class Cat extends Animal {
-    public Cat(String name, int age, String gender) throws InvalidInput {
+    public Cat(String name, int age, String gender) {
         super(name, age, gender);
-    }
-
-    protected Cat(String name, int age) throws InvalidInput {
-        super(name, age);
     }
 
     @Override

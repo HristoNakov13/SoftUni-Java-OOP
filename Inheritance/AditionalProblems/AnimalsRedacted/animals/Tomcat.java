@@ -1,13 +1,14 @@
 package animals;
 
 public class Tomcat extends Cat {
-    public Tomcat(String name, int age, String gender) throws InvalidInput {
-        this(name, age);
+    private static final String DEFAULT_TOMCAT_GENDER = "Male";
+
+    public Tomcat(String name, int age) {
+        super(name, age, DEFAULT_TOMCAT_GENDER);
     }
 
-    public Tomcat(String name, int age) throws InvalidInput {
-        super(name, age);
-        super.setGender("Male");
+    public Tomcat(String name, int age, String gendder) {
+        super(name, age, gendder);
     }
 
 //    @Override
