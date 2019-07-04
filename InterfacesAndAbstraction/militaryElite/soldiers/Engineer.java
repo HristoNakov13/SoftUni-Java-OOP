@@ -2,10 +2,8 @@ package militaryElite.soldiers;
 
 import militaryElite.entities.Repair;
 import militaryElite.baseClasses.SpecialisedSoldier;
-import militaryElite.enumartions.Corps;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 

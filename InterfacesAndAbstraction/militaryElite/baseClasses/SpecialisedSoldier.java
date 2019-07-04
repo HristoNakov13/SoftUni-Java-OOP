@@ -1,6 +1,6 @@
 package militaryElite.baseClasses;
 
-import militaryElite.enumartions.Corps;
+import militaryElite.enumeration.Corps;
 
 public class SpecialisedSoldier extends SoldierImpl {
     private final double salary;

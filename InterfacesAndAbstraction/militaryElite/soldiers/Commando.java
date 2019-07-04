@@ -2,10 +2,9 @@ package militaryElite.soldiers;
 
 import militaryElite.entities.Mission;
 import militaryElite.baseClasses.SpecialisedSoldier;
-import militaryElite.enumartions.MissionStates;
+import militaryElite.enumeration.MissionStates;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
