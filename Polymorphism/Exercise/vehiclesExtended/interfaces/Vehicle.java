@@ -1,4 +1,4 @@
-package vehiclesExtended;
+package vehiclesExtended.interfaces;
 
 public interface Vehicle {
     void refuel(double fuel);

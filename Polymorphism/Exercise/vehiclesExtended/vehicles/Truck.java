@@ -1,20 +1,10 @@
-package vehiclesExtended;
+package vehiclesExtended.vehicles;
+
+import vehiclesExtended.VehicleImpl;
 
 public class Truck extends VehicleImpl {
     public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity) {
         super(fuelQuantity, fuelConsumption, tankCapacity);
-    }
-
-
-    public String drive(double distance) {
-        double fuelConsumption = this.getFuelConsumption();
-        String status = super.drive(distance, fuelConsumption);
-        return status;
-    }
-
-    @Override
-    protected double getFuelConsumption() {
-        return super.getFuelConsumption() + 1.6;
     }
 
     @Override

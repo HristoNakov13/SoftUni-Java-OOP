@@ -1,5 +1,10 @@
 package vehiclesExtended;
 
+import vehiclesExtended.interfaces.Vehicle;
+import vehiclesExtended.vehicles.Bus;
+import vehiclesExtended.vehicles.Car;
+import vehiclesExtended.vehicles.Truck;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -53,12 +58,7 @@ public class Main {
                     }
                     break;
                 case "DriveEmpty":
-                    try {
-                        bus = (Bus) vehicle;
-                        System.out.println(bus.driveEmpty(value));
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
+                    System.out.println(bus.driveEmpty(value));
                     break;
             }
         }

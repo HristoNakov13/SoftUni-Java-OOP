@@ -1,5 +1,8 @@
 package vehiclesExtended;
 
+import vehiclesExtended.enumeration.FuelConsumptionByVehicleType;
+import vehiclesExtended.interfaces.Vehicle;
+
 import java.text.DecimalFormat;
 
 public abstract class VehicleImpl implements Vehicle {
@@ -34,18 +37,20 @@ public abstract class VehicleImpl implements Vehicle {
         return String.format("%s: %.2f", this.getClass().getSimpleName(), this.getFuelQuantity());
     }
 
-    protected String drive(double distance, double fuelConsumption) {
+    public String drive(double distance) {
+
+        String vehicleType = this.getClass().getSimpleName();
+        double fuelConsumption = FuelConsumptionByVehicleType.valueOf(vehicleType).getFuelConsumption()
+                + this.getFuelConsumption();
+
         double remainingFuel = this.getFuelQuantity() - fuelConsumption * distance;
+
         if (remainingFuel < 0) {
-            return String.format("%s needs refueling", this.getClass().getSimpleName());
+            return String.format("%s needs refueling", vehicleType);
         }
         this.setFuelQuantity(remainingFuel);
         DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT_STR);
-        return String.format("%s travelled %s km", this.getClass().getSimpleName(), decimalFormat.format(distance));
-    }
-
-    protected boolean needsToRefuel() {
-        return this.fuelQuantity == 0;
+        return String.format("%s travelled %s km", vehicleType, decimalFormat.format(distance));
     }
 
     protected boolean hasTankCapacityForRefuel(double refuelAmount) {
