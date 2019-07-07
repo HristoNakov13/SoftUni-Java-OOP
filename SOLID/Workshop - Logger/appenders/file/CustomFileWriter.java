@@ -28,7 +28,7 @@ public class CustomFileWriter extends BufferAppender {
         }
 
         try (BufferedWriter fileWriter = Files.newBufferedWriter(Paths.get(path))) {
-            fileWriter.write(this.getBufferedTextAsString());
+            fileWriter.write(super.getBufferedTextAsString());
             super.clearBufferedText();
         } catch (IOException e) {
             System.out.println(e.getMessage());

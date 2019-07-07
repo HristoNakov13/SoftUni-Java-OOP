@@ -18,9 +18,9 @@ public class Main {
 
         Appender consoleApp = new ConsoleAppender(simple);
         Appender normalFileApp = new BufferAppender(xml, "ERROR");
-        Appender sorted = new SortedAppender(message, "INFO");
+        Appender sorted = new SortedAppender(message, "WARNING");
 
-        CustomFileWriter writer = new CustomFileWriter(dateAndLevel, "INFO");
+        CustomFileWriter writer = new CustomFileWriter(dateAndLevel);
 
         Logger logger = new MessageLogger(consoleApp, normalFileApp, writer, sorted);
 
