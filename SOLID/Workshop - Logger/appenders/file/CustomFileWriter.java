@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class CustomFileWriter extends FileAppender {
+public class CustomFileWriter extends BufferAppender {
     public CustomFileWriter(Layout layout) {
         super(layout);
     }
@@ -29,8 +29,7 @@ public class CustomFileWriter extends FileAppender {
 
         try (BufferedWriter fileWriter = Files.newBufferedWriter(Paths.get(path))) {
             fileWriter.write(this.getBufferedTextAsString());
-            this.clearBufferedText();
-
+            super.clearBufferedText();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

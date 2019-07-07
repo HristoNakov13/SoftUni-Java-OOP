@@ -2,7 +2,7 @@ import appenders.Appender;
 import appenders.ConsoleAppender;
 import appenders.file.CustomFileReader;
 import appenders.file.CustomFileWriter;
-import appenders.file.FileAppender;
+import appenders.file.BufferAppender;
 import layouts.DateAndLevel;
 import layouts.Layout;
 import layouts.SimpleLayout;
@@ -18,7 +18,7 @@ public class Main {
         Layout dateAndLevel = new DateAndLevel();
 
         Appender consoleApp = new ConsoleAppender(simple);
-        Appender normalFileApp = new FileAppender(xml, "ERROR");
+        Appender normalFileApp = new BufferAppender(xml, "ERROR");
 
         CustomFileWriter writer = new CustomFileWriter(dateAndLevel, "INFO");
 

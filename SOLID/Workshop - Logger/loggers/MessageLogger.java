@@ -21,28 +21,36 @@ public class MessageLogger implements Logger {
 
     @Override
     public void logError(String date, String message) {
-        this.logImplementation(date, "ERROR", message);
-
+        this.logImplementation(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logInfo(String date, String message) {
-        this.logImplementation(date, "INFO", message);
+        this.logImplementation(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logFatal(String date, String message) {
-        this.logImplementation(date, "FATAL", message);
+        this.logImplementation(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logCritical(String date, String message) {
-        this.logImplementation(date, "CRITICAL", message);
+        this.logImplementation(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logWarning(String date, String message) {
-        this.logImplementation(date, "WARNING", message);
+        this.logImplementation(date, this.getReportLevel(), message);
+    }
+
+    private String getReportLevel() {
+        String reportLevel = new Throwable()
+                .getStackTrace()[1]
+                .getMethodName()
+                .replace("log", "")
+                .toUpperCase();
+        return reportLevel;
     }
 
     private List<Appender> getAppenders() {

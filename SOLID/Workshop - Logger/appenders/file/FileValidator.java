@@ -1,6 +1,7 @@
 package appenders.file;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -27,6 +28,12 @@ class FileValidator {
     }
 
     static boolean isValidFileExtension(String extension) {
+        return extension.equals(".txt");
+    }
+
+    static boolean isValidFileExtension(File file) {
+        String nameAsString = file.getName();
+        String extension = nameAsString.substring(nameAsString.lastIndexOf("."));
         return extension.equals(".txt");
     }
 }

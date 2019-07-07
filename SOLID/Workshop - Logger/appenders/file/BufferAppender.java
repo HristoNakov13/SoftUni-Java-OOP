@@ -3,15 +3,15 @@ package appenders.file;
 import appenders.AppenderImpl;
 import layouts.Layout;
 
-public class FileAppender extends AppenderImpl {
+public class BufferAppender extends AppenderImpl {
     private StringBuilder file;
 
-    public FileAppender(Layout layout) {
+    public BufferAppender(Layout layout) {
         super(layout);
         this.file = new StringBuilder();
     }
 
-    public FileAppender(Layout layout, String reportLevel) {
+    public BufferAppender(Layout layout, String reportLevel) {
         super(layout, reportLevel);
         this.file = new StringBuilder();
     }
