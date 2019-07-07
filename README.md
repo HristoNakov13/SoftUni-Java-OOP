@@ -8,7 +8,7 @@ Courses:
 - [Encapsulation](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/Encapsulation)<br/>
 - [Interfaces and Abstraction](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/InterfacesAndAbstraction)<br/>
 - [Polymorphism](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/Polymorphism)<br/>
-- SOLID<br/>
+- [SOLID](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/SOLID/Workshop%20-%20Logger)<br/>
 - Reflection and Annotation<br/>
 - Workshop<br/>
 - Unit Testing<br/>
