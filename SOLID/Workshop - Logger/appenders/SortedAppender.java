@@ -49,8 +49,11 @@ public class SortedAppender extends AppenderImpl {
         }
         StringBuilder log = new StringBuilder();
         log.append("Log:").append(System.lineSeparator());
+        int counter = 0;
         for (String message : this.data.get(reportLevel)) {
-            log.append(message).append(System.lineSeparator());
+            log
+                    .append("#").append(++counter)
+                    .append(message).append(System.lineSeparator());
         }
         return log.toString().trim();
     }
@@ -63,12 +66,12 @@ public class SortedAppender extends AppenderImpl {
                 .append(super.appenderStatistics())
                 .append(System.lineSeparator());
         for (Map.Entry<String, List<String>> level : this.data.entrySet()) {
+            String reportLevel = level.getKey();
             info
-                    .append("Report level: ").append(level.getKey())
+                    .append("Report level: ").append(reportLevel)
+                    .append(System.lineSeparator())
+                    .append(this.getReportLevelLog(reportLevel))
                     .append(System.lineSeparator());
-            for (String message : level.getValue()) {
-                info.append(message).append(System.lineSeparator());
-            }
         }
 
         return info.toString();
