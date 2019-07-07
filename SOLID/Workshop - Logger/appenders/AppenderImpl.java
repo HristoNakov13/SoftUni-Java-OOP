@@ -30,6 +30,7 @@ public abstract class AppenderImpl implements Appender {
     public void setReportLevel (ReportLevel reportLevel) {
         this.reportLevel = reportLevel;
         String[] levels = reportLevel.getAvailableReportLevels().split(", ");
+        this.availableReportLevels.clear();                         //to reset or not to reset?
         this.availableReportLevels.addAll(Arrays.asList(levels));
     }
 
