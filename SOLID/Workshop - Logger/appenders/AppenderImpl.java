@@ -34,7 +34,7 @@ public abstract class AppenderImpl implements Appender {
         this.availableReportLevels.addAll(Arrays.asList(levels));
     }
 
-    protected Layout getLayout() {
+    private Layout getLayout() {
         return layout;
     }
 
@@ -65,7 +65,7 @@ public abstract class AppenderImpl implements Appender {
         String appenderType = this.getClass().getSimpleName();
         String layoutType = this.layout.getClass().getSimpleName();
         String reportLevel = this.getReportLevel().getName();
-        return String.format("appenders.Appender type: %s, layouts.Layout type: %s, Report level: %s, Messages appended: %d"
+        return String.format("Appender type: %s, layouts.Layout type: %s, Report level: %s, Messages appended: %d"
                 , appenderType
                 , layoutType
                 , reportLevel

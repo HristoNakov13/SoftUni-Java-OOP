@@ -21,27 +21,27 @@ public class MessageLogger implements Logger {
 
     @Override
     public void logError(String date, String message) {
-        this.logImplementation(date, this.getReportLevel(), message);
+        this.logMessages(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logInfo(String date, String message) {
-        this.logImplementation(date, this.getReportLevel(), message);
+        this.logMessages(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logFatal(String date, String message) {
-        this.logImplementation(date, this.getReportLevel(), message);
+        this.logMessages(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logCritical(String date, String message) {
-        this.logImplementation(date, this.getReportLevel(), message);
+        this.logMessages(date, this.getReportLevel(), message);
     }
 
     @Override
     public void logWarning(String date, String message) {
-        this.logImplementation(date, this.getReportLevel(), message);
+        this.logMessages(date, this.getReportLevel(), message);
     }
 
     private String getReportLevel() {
@@ -57,7 +57,7 @@ public class MessageLogger implements Logger {
         return appenders;
     }
 
-    private void logImplementation(String date, String reportLevel, String message) {
+    private void logMessages(String date, String reportLevel, String message) {
         for (Appender appender : this.getAppenders()) {
             if (appender.canAppend(reportLevel)) {
                 appender.append(date, reportLevel, message);

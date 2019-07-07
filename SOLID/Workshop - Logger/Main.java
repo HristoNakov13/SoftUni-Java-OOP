@@ -1,28 +1,28 @@
 import appenders.Appender;
 import appenders.ConsoleAppender;
+import appenders.SortedAppender;
 import appenders.file.CustomFileReader;
 import appenders.file.CustomFileWriter;
 import appenders.file.BufferAppender;
-import layouts.DateAndLevel;
-import layouts.Layout;
-import layouts.SimpleLayout;
-import layouts.XmlLayout;
+import layouts.*;
 import loggers.Logger;
 import loggers.MessageLogger;
 
 public class Main {
     public static void main(String[] args) {
 
-        Layout simple = new SimpleLayout();
+        Layout simple = new FullLayout();
         Layout xml = new XmlLayout();
         Layout dateAndLevel = new DateAndLevel();
+        Layout message = new SimpleMessageLayout();
 
         Appender consoleApp = new ConsoleAppender(simple);
         Appender normalFileApp = new BufferAppender(xml, "ERROR");
+        Appender sorted = new SortedAppender(message, "INFO");
 
         CustomFileWriter writer = new CustomFileWriter(dateAndLevel, "INFO");
 
-        Logger logger = new MessageLogger(consoleApp, normalFileApp, writer);
+        Logger logger = new MessageLogger(consoleApp, normalFileApp, writer, sorted);
 
         logger.logInfo("3/31/2015 5:33:07 PM", "Everything seems fine");
         logger.logWarning("3/31/2015 5:33:07 PM", "Warning: ping is too high - disconnect imminent");
@@ -31,6 +31,10 @@ public class Main {
         logger.logFatal("3/31/2015 5:33:07 PM", "mscorlib.dll does not respond");
 
         System.out.println(logger.logStatistics());
+
+        logger.logFatal("3/31/2019 5:33:07 PM", "boom boom crash");
+        logger.logFatal("2/1/2018 17:22:07 AM", "lol");
+        System.out.println(((SortedAppender) sorted).getReportLevelLog("FATAL"));
 
 
         String invalidFile = "C:\\Users\\Username\\Desktop\\untitled\\src\\text.jpg";
