@@ -8,6 +8,10 @@ import layouts.XmlLayout;
 import loggers.Logger;
 import loggers.MessageLogger;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -16,10 +20,10 @@ public class Main {
         Layout dateAndLevel = new DateAndLevel();
 
         Appender consoleApp = new ConsoleAppender(simple);
-        Appender fileAppender = new FileAppender(xml, "ERROR");
+        Appender normalFileApp = new FileAppender(xml, "ERROR");
         Appender dateLevelFileAppender = new FileAppender(dateAndLevel, "FATAL");
 
-        Logger logger = new MessageLogger(consoleApp, fileAppender, dateLevelFileAppender);
+        Logger logger = new MessageLogger(consoleApp, normalFileApp, dateLevelFileAppender);
 
         logger.logInfo("3/31/2015 5:33:07 PM", "Everything seems fine");
         logger.logWarning("3/31/2015 5:33:07 PM", "Warning: ping is too high - disconnect imminent");
@@ -28,6 +32,18 @@ public class Main {
         logger.logFatal("3/31/2015 5:33:07 PM", "mscorlib.dll does not respond");
 
         System.out.println(logger.logStatistics());
-        System.out.println(((FileAppender) dateLevelFileAppender).getFileContentAsString());
+        FileAppender fileAppender = (FileAppender) dateLevelFileAppender;
+        System.out.println(fileAppender.getBufferedTextAsString());
+
+        String invalidFile = "C:\\Users\\Username\\Desktop\\untitled\\src\\text.jpg";
+        String path = "C:\\Users\\Username\\Desktop\\untitled\\src\\text.txt";
+
+        try {
+            fileAppender.writeBufferedTextOnFile(path);
+            System.out.println(fileAppender.getFileContentAsString(path));
+        } catch (Throwable e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(fileAppender.getFileSize(path));
     }
 }
