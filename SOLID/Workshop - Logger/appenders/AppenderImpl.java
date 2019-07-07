@@ -48,7 +48,7 @@ public abstract class AppenderImpl implements Appender {
         return this.getLayout().formatMessage(date, reportLevel, message);
     }
 
-    void successfullyAppended() {
+    protected void successfullyAppended() {
         this.msgAppendedCounter++;
     }
 

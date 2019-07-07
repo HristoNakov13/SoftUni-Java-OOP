@@ -1,1 +1,5 @@
+Date: 3/31/2015 5:33:07 PM Threat level: INFO
+Date: 3/31/2015 5:33:07 PM Threat level: WARNING
+Date: 3/31/2015 5:33:07 PM Threat level: ERROR
+Date: 3/31/2015 5:33:07 PM Threat level: CRITICAL
 Date: 3/31/2015 5:33:07 PM Threat level: FATAL

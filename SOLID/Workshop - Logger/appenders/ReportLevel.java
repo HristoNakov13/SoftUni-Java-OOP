@@ -8,7 +8,6 @@ public enum ReportLevel {
     FATAL("FATAL")
     ;
 
-
     private String value;
 
     ReportLevel(String value) {
