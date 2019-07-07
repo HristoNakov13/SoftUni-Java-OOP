@@ -53,11 +53,11 @@ public class FileAppender extends AppenderImpl {
     private boolean gotConfirmationToProceed(String path) throws IOException {
 
         String fileName = path.substring(path.lastIndexOf("\\") + 1);
-        String nameOfCurrMethod = new Throwable()
-                .getStackTrace()[0]
+        String nameOfWriteMethod = new Throwable()
+                .getStackTrace()[1]
                 .getMethodName();
 
-        System.out.println(String.format("%s will delete current bufferedText and overwrite %s content after execution", nameOfCurrMethod, fileName));
+        System.out.println(String.format("%s will delete current bufferedText and overwrite %s content after execution", nameOfWriteMethod, fileName));
         System.out.println("Proceed? Y/N");
 
         BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
@@ -85,7 +85,7 @@ public class FileAppender extends AppenderImpl {
     public String getFileSize(String path) {
         File file = new File(path);
         if (!file.exists()) {
-            return "File does not exist";
+            return String.format("File %s does not exist", file.getName());
         }
         long size;
         size = file.length();

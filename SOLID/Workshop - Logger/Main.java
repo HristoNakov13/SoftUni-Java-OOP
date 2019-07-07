@@ -44,6 +44,6 @@ public class Main {
         } catch (Throwable e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(fileAppender.getFileSize(path));
+        System.out.println(fileAppender.getFileSize(invalidFile));
     }
 }
