@@ -1,14 +1,10 @@
 package barracksReturnOfTheDependancies;
 
-import barracksReturnOfTheDependancies.Initialization.Initialization;
+import barracksReturnOfTheDependancies.initializator.Initialization;
 import barracksReturnOfTheDependancies.contracts.CommandInterpreter;
 import barracksReturnOfTheDependancies.contracts.Repository;
 import barracksReturnOfTheDependancies.contracts.Runnable;
 import barracksReturnOfTheDependancies.contracts.UnitFactory;
-import barracksReturnOfTheDependancies.core.CommandInterpreterImpl;
-import barracksReturnOfTheDependancies.core.Engine;
-import barracksReturnOfTheDependancies.core.factories.UnitFactoryImpl;
-import barracksReturnOfTheDependancies.data.UnitRepository;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package barracksReturnOfTheDependancies.Initialization;
+package barracksReturnOfTheDependancies.initializator;
 
 import barracksReturnOfTheDependancies.contracts.CommandInterpreter;
 import barracksReturnOfTheDependancies.contracts.Repository;
