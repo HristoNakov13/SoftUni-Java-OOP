@@ -9,12 +9,12 @@ public class Retire extends Command {
         super(data);
     }
 
-    public UnitRepository getRepository() {
+    private UnitRepository getRepository() {
         return repository;
     }
 
     @Inject
-    public void setRepository(UnitRepository repository) {
+    private void setRepository(UnitRepository repository) {
         this.repository = repository;
     }
 

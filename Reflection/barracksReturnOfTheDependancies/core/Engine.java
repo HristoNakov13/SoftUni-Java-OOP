@@ -1,8 +1,7 @@
 package barracksReturnOfTheDependancies.core;
 
-import barracksReturnOfTheDependancies.contracts.Repository;
+import barracksReturnOfTheDependancies.contracts.*;
 import barracksReturnOfTheDependancies.contracts.Runnable;
-import barracksReturnOfTheDependancies.contracts.UnitFactory;
 import barracksReturnOfTheDependancies.core.commands.Command;
 import barracksReturnOfTheDependancies.core.commands.Inject;
 
@@ -15,13 +14,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class Engine implements Runnable {
+    private CommandInterpreter commandInterpreter;
 
-    private Repository repository;
-    private UnitFactory unitFactory;
-
-    public Engine(Repository repository, UnitFactory unitFactory) {
-        this.repository = repository;
-        this.unitFactory = unitFactory;
+    public Engine(CommandInterpreter commandInterpreter) {
+        this.commandInterpreter = commandInterpreter;
     }
 
     @Override
@@ -46,43 +42,12 @@ public class Engine implements Runnable {
         }
     }
 
-    private Repository getRepository() {
-        return repository;
-    }
-
-    private UnitFactory getUnitFactory() {
-        return unitFactory;
-    }
-
     private String interpretCommand(String[] data, String commandName) {
-        String result = null;
-
-        String toUpper = String.valueOf(commandName.charAt(0)).toUpperCase() + commandName.substring(1);
-        String clazzName = String.format("barracksReturnOfTheDependancies.core.commands.%s", toUpper);
-
-        try {
-            Class clazz = Class.forName(clazzName);
-            Constructor constructor = clazz.getDeclaredConstructor(String[].class);
-            Command instance = (Command) constructor.newInstance((Object) data);
-            Method[] methods = clazz.getDeclaredMethods();
-
-            for (Method method : methods) {
-                if (method.isAnnotationPresent(Inject.class)) {
-
-                    String repoClassName = this.getRepository().getClass().getName();
-                    String expectedParameter = method.getParameterTypes()[0].getName();
-
-                    if (repoClassName.equals(expectedParameter)) {
-                        method.invoke(instance, this.getRepository());
-                    }else {
-                        method.invoke(instance, this.getUnitFactory());
-                    }
-                }
-            }
-            result = instance.execute();
-
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException ignore) {
+        Executable command = this.commandInterpreter.interpretCommand(data, commandName);
+        if (command != null) {
+            return command.execute();
+        }else {
+            return "Invalid command";
         }
-        return result;
     }
 }

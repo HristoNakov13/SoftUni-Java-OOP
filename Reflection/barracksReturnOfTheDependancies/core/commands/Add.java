@@ -12,21 +12,21 @@ public class Add extends Command {
         super(data);
     }
 
-    public UnitRepository getRepository() {
+    private UnitRepository getRepository() {
         return repository;
     }
 
     @Inject
-    public void setRepository(UnitRepository repository) {
+    private void setRepository(UnitRepository repository) {
         this.repository = repository;
     }
 
-    public UnitFactory getUnitFactory() {
+    private UnitFactory getUnitFactory() {
         return unitFactory;
     }
 
     @Inject
-    public void setUnitFactory(UnitFactory unitFactory) {
+    private void setUnitFactory(UnitFactory unitFactory) {
         this.unitFactory = unitFactory;
     }
 

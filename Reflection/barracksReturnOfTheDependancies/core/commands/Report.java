@@ -14,7 +14,7 @@ public class Report extends Command {
     }
 
     @Inject
-    public void setRepo(UnitRepository repo) {
+    private void setRepo(UnitRepository repo) {
         this.repo = repo;
     }
 
