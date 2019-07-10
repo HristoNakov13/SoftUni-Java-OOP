@@ -31,7 +31,19 @@ public class RaceImpl implements Race {
         return distance;
     }
 
-    private void setDistance(int distance) throws ArgumentException {
+    public void setWindSpeed(double windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    public void setOceanCurrent(double oceanCurrent) {
+        this.oceanCurrent = oceanCurrent;
+    }
+
+    public void setMotorBoatsAllowed(boolean motorBoatsAllowed) {
+        this.motorBoatsAllowed = motorBoatsAllowed;
+    }
+
+    public void setDistance(int distance) throws ArgumentException {
         if (!RaceValidator.isValidDistance(distance)) {
             throw new ArgumentException("Distance must be a positive integer");
         }
@@ -47,16 +59,16 @@ public class RaceImpl implements Race {
     }
 
     public boolean SignUpBoat(Boat boat) throws UnallowedBoatType {
-        if (!this.MotorBoatsAllowed()) {
+        if (!this.motorBoatsAllowed()) {
             if (RaceValidator.isMotorBoat(boat)) {
-                throw new UnallowedBoatType("Unallowed boat type");
+                throw new UnallowedBoatType("The specified boat does not meet the race constraints.");
             }
         }
         this.participants.add(boat);
         return true;
     }
 
-    private boolean MotorBoatsAllowed() {
+    public boolean motorBoatsAllowed() {
         return this.motorBoatsAllowed;
     }
 
@@ -64,6 +76,12 @@ public class RaceImpl implements Race {
         Map<Boat, Double> raceResults = new LinkedHashMap<>();
 
         for (Boat boat : this.participants) {
+
+            if (!this.motorBoatsAllowed()) {
+                if (RaceValidator.isMotorBoat(boat)) {
+                    continue;
+                }
+            }
             if (RaceValidator.isSailBoat(boat)) {
                 injectWindSpeed(boat);
             }
@@ -125,5 +143,9 @@ public class RaceImpl implements Race {
                 break;
             }
         }
+    }
+
+    public boolean hasEnoughParticipants() {
+        return this.participants.size() >= 3;
     }
 }

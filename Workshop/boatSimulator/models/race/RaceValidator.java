@@ -8,19 +8,12 @@ import java.lang.reflect.Field;
 class RaceValidator {
 
     static boolean isSailBoat(Boat boat) {
-        boolean isSailBoat = false;
-        Field[] fields = boat.getClass().getFields();
-        for (Field field : fields) {
-            if (field.getName().equals("windSpeed")) {
-                isSailBoat = true;
-                break;
-            }
-        }
-        return isSailBoat;
+        return boat.getClass().getSimpleName().equals("SailBoat");
     }
 
     static boolean isMotorBoat(Boat boat) {
-        Field[] fields = boat.getClass().getFields();
+        Class clazz = boat.getClass();
+        Field[] fields = clazz.getDeclaredFields();
         String engineClassName = Engine.class.getName();
         boolean isMotorBoat = false;
 

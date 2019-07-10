@@ -19,7 +19,10 @@ public class Controller {
         currentRace = null;
     }
 
-    public String signUpBoat(String model) throws NonExistantModelException, UnallowedBoatType {
+    public String signUpBoat(String model) throws NonExistantModelException, UnallowedBoatType, IllegalRaceException {
+        if (!thereIsOngoingRace()) {
+            throw new IllegalRaceException("There is currently no race set.");
+        }
         Boat participant = this.database.getBoat(model);
         if (participant != null && this.currentRace.SignUpBoat(participant)) {
             return String.format("Boat with model %s has signed up for the current Race.", model);
@@ -68,12 +71,23 @@ public class Controller {
     }
 
     public String openRace(int distance, double windSpeed, double oceanCurrent, boolean motorBoatsAllowed) throws IllegalRaceException, ArgumentException {
-        if (thereIsOngoingRace()) {
-            throw new IllegalRaceException("There is already an ongoing race");
+        String result = "";
+        if (this.currentRace == null) {
+            this.currentRace = new RaceImpl(distance, windSpeed, oceanCurrent, motorBoatsAllowed);
+            result = String.format("A new race with distance %d meters, wind speed %.0f m/s and ocean current speed %.0f m/s has been set."
+                    , distance, windSpeed, oceanCurrent);
+        } else {
+            if (motorBoatsAllowed == this.currentRace.motorBoatsAllowed()) {
+                result = "The current race has already been set.";
+            }else {
+                this.currentRace.setDistance(distance);
+                this.currentRace.setWindSpeed(windSpeed);
+                this.currentRace.setOceanCurrent(oceanCurrent);
+                this.currentRace.setMotorBoatsAllowed(motorBoatsAllowed);
+            }
+
         }
-        this.currentRace = new RaceImpl(distance, windSpeed, oceanCurrent, motorBoatsAllowed);
-        return String.format("A new race with distance %d meters, wind speed %.0f m/s and ocean current speed %.0f m/s has been set."
-        , distance, windSpeed, oceanCurrent);
+        return result;
     }
 
 
@@ -81,9 +95,14 @@ public class Controller {
         String result;
 
         if (thereIsOngoingRace()) {
-            result = this.currentRace.StartRace();
+            if (this.currentRace.hasEnoughParticipants()) {
+                result = this.currentRace.StartRace();
+                this.currentRace = null;
+            } else {
+                result = "Not enough contestants for the race.";
+            }
         } else {
-            throw new IllegalRaceException("None available races");
+            throw new IllegalRaceException("There is currently no race set.");
         }
         return result;
     }

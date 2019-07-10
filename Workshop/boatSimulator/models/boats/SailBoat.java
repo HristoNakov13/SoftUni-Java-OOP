@@ -27,7 +27,7 @@ public class SailBoat extends BoatImpl {
     @Override
     public double calculateSpeed(double oceanCurrent) {
         double sailEfficiency = this.getWindSpeed() * (this.getSailEfficiency() / 100.0);
-        double current = oceanCurrent / 2;
+        double current = oceanCurrent / 2.0;
         return sailEfficiency - this.getWeight() + current;
     }
 }

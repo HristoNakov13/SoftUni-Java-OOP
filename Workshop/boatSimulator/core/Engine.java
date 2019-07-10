@@ -23,22 +23,26 @@ public class Engine {
         while (!"End".equals(input = bfr.readLine())) {
             String[] data = input.split("\\\\");
             String commandName = data[0];
-            String output = this.handleCommand(data, commandName);
-            System.out.println(output);
+            String output;
+            try {
+                output = this.handleCommand(data, commandName);
+                System.out.println(output);
+            } catch (DuplicateModelException
+                    | UnallowedBoatType
+                    | NonExistantModelException
+                    | IllegalRaceException
+                    | ArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+
         }
     }
 
-    public String handleCommand(String[]data, String commandName) {
-        String result = null;
-        try {
-            result = this.commandHandler.handleCommand(data, commandName);
-        } catch (ArgumentException
-                | DuplicateModelException
-                | NonExistantModelException
-                | IllegalRaceException
-                | UnallowedBoatType e) {
-            System.out.println(e.getMessage());
-        }
+    public String handleCommand(String[] data, String commandName) throws DuplicateModelException, UnallowedBoatType, NonExistantModelException, IllegalRaceException, ArgumentException {
+        String result;
+        result = this.commandHandler.handleCommand(data, commandName);
+
         return result;
     }
 }
