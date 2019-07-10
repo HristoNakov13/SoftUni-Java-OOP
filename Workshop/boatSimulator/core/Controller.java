@@ -62,7 +62,7 @@ public class Controller {
     }
 
     private String boatSuccessfullyCreated(Boat boat) throws DuplicateModelException {
-        String boatType = new Throwable().getStackTrace()[1].getMethodName();
+        String boatType = new Throwable().getStackTrace()[1].getMethodName().replace("create", "");
         this.database.addBoat(boat);
         return String.format("%s with model %s registered successfully.", boatType, boat.getModel());
     }
