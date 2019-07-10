@@ -39,14 +39,12 @@ public class Controller {
 
     public String createRowBoat(String model, int weight, int oars) throws ArgumentException, DuplicateModelException {
         Boat boat = new RowBoat(model, weight, oars);
-        this.database.addBoat(boat);
-        return String.format("Row Boat with model %s registered successfully.", model);
+        return boatSuccessfullyCreated(boat);
     }
 
     public String createSailBoat(String model, int weight, double sailEfficiency) throws ArgumentException, DuplicateModelException {
         Boat boat = new SailBoat(model, weight, sailEfficiency);
-        this.database.addBoat(boat);
-        return String.format("Sail Boat with model %s registered successfully.", model);
+        return boatSuccessfullyCreated(boat);
     }
 
     public String createPowerBoat(String model, int weight, String firstEngineModel, String secondEngineModel) throws ArgumentException, DuplicateModelException, NonExistantModelException {
@@ -54,15 +52,19 @@ public class Controller {
         Engine secondEngine = this.database.getEngine(secondEngineModel);
 
         Boat boat = new PowerBoat(model, weight, firstEngine, secondEngine);
-        this.database.addBoat(boat);
-        return String.format("Power Boat with model %s registered successfully.", model);
+        return boatSuccessfullyCreated(boat);
     }
 
     public String createYacht(String model, int weight, String engineModel, int cargoWeight) throws ArgumentException, DuplicateModelException, NonExistantModelException {
         Engine engine = this.database.getEngine(engineModel);
         Boat boat = new Yacht(model, weight, engine, cargoWeight);
+        return boatSuccessfullyCreated(boat);
+    }
+
+    private String boatSuccessfullyCreated(Boat boat) throws DuplicateModelException {
+        String boatType = new Throwable().getStackTrace()[1].getMethodName();
         this.database.addBoat(boat);
-        return String.format("Yacht with model %s registered successfully.", model);
+        return String.format("%s with model %s registered successfully.", boatType, boat.getModel());
     }
 
     public String openRace(int distance, double windSpeed, double oceanCurrent, boolean motorBoatsAllowed) throws IllegalRaceException, ArgumentException {
@@ -73,6 +75,7 @@ public class Controller {
         return String.format("A new race with distance %d meters, wind speed %.0f m/s and ocean current speed %.0f m/s has been set."
         , distance, windSpeed, oceanCurrent);
     }
+
 
     public String startRace() throws IllegalRaceException {
         String result;
