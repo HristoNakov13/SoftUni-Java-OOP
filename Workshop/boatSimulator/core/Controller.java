@@ -65,7 +65,10 @@ public class Controller {
     }
 
     private String boatSuccessfullyCreated(Boat boat) throws DuplicateModelException {
-        String boatType = new Throwable().getStackTrace()[1].getMethodName().replace("create", "");
+        String boatType = new Throwable()
+                .getStackTrace()[1]
+                .getMethodName()
+                .replace("create", "");
         this.database.addBoat(boat);
         return String.format("%s with model %s registered successfully.", boatType, boat.getModel());
     }
@@ -75,21 +78,25 @@ public class Controller {
         if (this.currentRace == null) {
             this.currentRace = new RaceImpl(distance, windSpeed, oceanCurrent, motorBoatsAllowed);
             result = String.format("A new race with distance %d meters, wind speed %.0f m/s and ocean current speed %.0f m/s has been set."
-                    , distance, windSpeed, oceanCurrent);
+                    , distance
+                    , windSpeed
+                    , oceanCurrent);
         } else {
             if (motorBoatsAllowed == this.currentRace.motorBoatsAllowed()) {
                 result = "The current race has already been set.";
             }else {
-                this.currentRace.setDistance(distance);
-                this.currentRace.setWindSpeed(windSpeed);
-                this.currentRace.setOceanCurrent(oceanCurrent);
-                this.currentRace.setMotorBoatsAllowed(motorBoatsAllowed);
+                this.updateRace(distance, windSpeed, oceanCurrent, motorBoatsAllowed);
             }
-
         }
         return result;
     }
 
+    private void updateRace(int distance, double windSpeed, double oceanCurrent, boolean motorBoatsAllowed) throws ArgumentException {
+        this.currentRace.setDistance(distance);
+        this.currentRace.setWindSpeed(windSpeed);
+        this.currentRace.setOceanCurrent(oceanCurrent);
+        this.currentRace.setMotorBoatsAllowed(motorBoatsAllowed);
+    }
 
     public String startRace() throws IllegalRaceException {
         String result;

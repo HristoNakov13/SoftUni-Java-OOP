@@ -3,6 +3,7 @@ package boatSimulator.models.race;
 import boatSimulator.models.ArgumentException;
 import boatSimulator.models.boats.Boat;
 import boatSimulator.models.boats.Inject;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
@@ -96,10 +97,13 @@ public class RaceImpl implements Race {
         StringBuilder scoreBoard = new StringBuilder();
         AtomicInteger counter = new AtomicInteger(0);
 
-        racers.entrySet().stream().sorted((racer1, racer2) -> {
+        racers.entrySet()
+                .stream()
+                .sorted((racer1, racer2) -> {
             int compare;
             double racer1Time = racer1.getValue();
             double racer2Time = racer1.getValue();
+
             if (racer1Time <= 0 && racer2Time > 0) {
                 compare = -1;
             } else if (racer2Time <= 0 && racer1Time > 0) {
@@ -108,7 +112,9 @@ public class RaceImpl implements Race {
                 compare = Double.compare(racer1.getValue(), racer2.getValue());
             }
             return compare;
-        }).limit(3).forEach(racer -> {
+        })
+                .limit(3)
+                .forEach(racer -> {
             DecimalFormat dFormat = new DecimalFormat("0.##");
             String time = dFormat.format(racer.getValue());
             if (racer.getValue() < 0) {
@@ -126,7 +132,7 @@ public class RaceImpl implements Race {
             scoreBoard
                     .append("#").append(placing).append(" ")
                     .append(racer.getKey().boatInformation())
-                    .append(String.format(" Time: %s" , time))
+                    .append(String.format(" Time: %s", time))
                     .append(System.lineSeparator());
         });
         return scoreBoard.toString().trim();
@@ -134,6 +140,7 @@ public class RaceImpl implements Race {
 
     private void injectWindSpeed(Boat boat) {
         Method[] methods = boat.getClass().getDeclaredMethods();
+
         for (Method method : methods) {
             if (method.isAnnotationPresent(Inject.class)) {
                 method.setAccessible(true);

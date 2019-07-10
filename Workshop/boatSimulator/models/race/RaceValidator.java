@@ -6,9 +6,19 @@ import boatSimulator.models.engines.Engine;
 import java.lang.reflect.Field;
 
 class RaceValidator {
+    private static final String WIND_SPEED_VAR_NAME = "windSpeed";
 
     static boolean isSailBoat(Boat boat) {
-        return boat.getClass().getSimpleName().equals("SailBoat");
+        Field[] fields = boat.getClass().getDeclaredFields();
+        boolean isSailBoat = false;
+
+        for (Field field : fields) {
+            if (field.getName().equals(WIND_SPEED_VAR_NAME)) {
+                isSailBoat = true;
+                break;
+            }
+        }
+        return isSailBoat;
     }
 
     static boolean isMotorBoat(Boat boat) {

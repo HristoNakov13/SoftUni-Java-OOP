@@ -40,9 +40,6 @@ public class Engine {
     }
 
     public String handleCommand(String[] data, String commandName) throws DuplicateModelException, UnallowedBoatType, NonExistantModelException, IllegalRaceException, ArgumentException {
-        String result;
-        result = this.commandHandler.handleCommand(data, commandName);
-
-        return result;
+        return this.commandHandler.handleCommand(data, commandName);
     }
 }
