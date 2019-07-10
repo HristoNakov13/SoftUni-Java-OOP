@@ -98,10 +98,12 @@ public class RaceImpl implements Race {
 
         racers.entrySet().stream().sorted((racer1, racer2) -> {
             int compare;
-            if (racer1.getValue() < 0) {
-                compare = 1;
-            } else if (racer2.getValue() < 0) {
+            double racer1Time = racer1.getValue();
+            double racer2Time = racer1.getValue();
+            if (racer1Time <= 0 && racer2Time > 0) {
                 compare = -1;
+            } else if (racer2Time <= 0 && racer1Time > 0) {
+                compare = 1;
             } else {
                 compare = Double.compare(racer1.getValue(), racer2.getValue());
             }
