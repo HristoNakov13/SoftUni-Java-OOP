@@ -11,25 +11,42 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/p06_TirePressureMonitoringSystem/Alarm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+              <folding>
+                <element signature="e#544#545#0" expanded="true" />
+                <element signature="e#579#580#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/p06_TirePressureMonitoringSystem/Sensor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/p06_TirePressureMonitoringSystem/Sensor.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/tirePressureSystem/TirePressureMonitoringSystemTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="398">
+              <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#287#288#0" expanded="true" />
+                <element signature="e#338#339#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,10 +69,12 @@
         <option value="$PROJECT_DIR$/src/test/java/databaseExtended/DatabaseExtendedTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/listIterator/ListIteratorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/bubbleSort/BubbleSortTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/customLinkedList/CustomLinkedListTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/tirePressureSystem/TirePressureMonitoringSystemTest.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
@@ -64,8 +83,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -116,6 +133,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -139,7 +158,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BubbleSortTest">
+  <component name="RunManager" selected="JUnit.TirePressureMonitoringSystemTest">
     <configuration name="BubbleSortTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UnitTesting_Exercises" />
       <extension name="coverage">
@@ -150,6 +169,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="bubbleSort" />
       <option name="MAIN_CLASS_NAME" value="bubbleSort.BubbleSortTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomLinkedListTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UnitTesting_Exercises" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="customLinkedList.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="customLinkedList" />
+      <option name="MAIN_CLASS_NAME" value="customLinkedList.CustomLinkedListTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,21 +204,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="UnitTesting_Exercises" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="database.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="database" />
-      <option name="MAIN_CLASS_NAME" value="database.DatabaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ListIteratorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UnitTesting_Exercises" />
       <extension name="coverage">
@@ -200,12 +219,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TirePressureMonitoringSystemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UnitTesting_Exercises" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tirePressureSystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tirePressureSystem" />
+      <option name="MAIN_CLASS_NAME" value="tirePressureSystem.TirePressureMonitoringSystemTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TirePressureMonitoringSystemTest" />
+        <item itemvalue="JUnit.CustomLinkedListTest" />
+        <item itemvalue="JUnit.DatabaseExtendedTest" />
         <item itemvalue="JUnit.BubbleSortTest" />
         <item itemvalue="JUnit.ListIteratorTest" />
-        <item itemvalue="JUnit.DatabaseExtendedTest" />
-        <item itemvalue="JUnit.DatabaseTest" />
       </list>
     </recent_temporary>
   </component>
@@ -220,77 +255,79 @@
       <option name="presentableId" value="Default" />
       <updated>1563092577355</updated>
       <workItem from="1563092578980" duration="4965000" />
+      <workItem from="1563127650706" duration="16000" />
+      <workItem from="1563178264520" duration="3968000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ListIteratorTest - 2019.07.14 at 12h 29m 10s.xml">
-      <configuration name="ListIteratorTest" configurationId="JUnit" />
+    <history-entry file="CustomLinkedListTest - 2019.07.15 at 11h 41m 54s.xml">
+      <configuration name="CustomLinkedListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ListIteratorTest - 2019.07.14 at 12h 29m 59s.xml">
-      <configuration name="ListIteratorTest" configurationId="JUnit" />
+    <history-entry file="CustomLinkedListTest - 2019.07.15 at 11h 48m 09s.xml">
+      <configuration name="CustomLinkedListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ListIteratorTest - 2019.07.14 at 12h 30m 12s.xml">
-      <configuration name="ListIteratorTest" configurationId="JUnit" />
+    <history-entry file="CustomLinkedListTest - 2019.07.15 at 11h 51m 04s.xml">
+      <configuration name="CustomLinkedListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ListIteratorTest - 2019.07.14 at 12h 31m 20s.xml">
-      <configuration name="ListIteratorTest" configurationId="JUnit" />
+    <history-entry file="CustomLinkedListTest - 2019.07.15 at 11h 53m 01s.xml">
+      <configuration name="CustomLinkedListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ListIteratorTest - 2019.07.14 at 12h 33m 07s.xml">
-      <configuration name="ListIteratorTest" configurationId="JUnit" />
+    <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 03m 41s.xml">
+      <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ListIteratorTest - 2019.07.14 at 12h 34m 28s.xml">
-      <configuration name="ListIteratorTest" configurationId="JUnit" />
+    <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 05m 33s.xml">
+      <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ListIteratorTest - 2019.07.14 at 12h 42m 26s.xml">
-      <configuration name="ListIteratorTest" configurationId="JUnit" />
+    <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 05m 36s.xml">
+      <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BubbleSortTest - 2019.07.14 at 12h 42m 30s.xml">
-      <configuration name="BubbleSortTest" configurationId="JUnit" />
+    <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 12m 29s.xml">
+      <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BubbleSortTest - 2019.07.14 at 12h 43m 50s.xml">
-      <configuration name="BubbleSortTest" configurationId="JUnit" />
+    <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 12m 32s.xml">
+      <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BubbleSortTest - 2019.07.14 at 12h 45m 50s.xml">
-      <configuration name="BubbleSortTest" configurationId="JUnit" />
+    <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 12m 51s.xml">
+      <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4965000" />
+    <option name="totallyTimeSpent" value="8949000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,16 +365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/databaseExtended/DatabaseExtendedTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-384">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/bubbleSort/BubbleSortTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
@@ -372,24 +399,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/p05_CustomLinkedList/CustomLinkedList.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/databaseExtended/DatabaseExtendedTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3104">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="374">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/p06_TirePressureMonitoringSystem/Alarm.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/Assert.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="197">
+          <caret line="235" column="23" selection-start-line="235" selection-start-column="23" selection-end-line="235" selection-end-column="23" />
+          <folding>
+            <element signature="e#8323#8324#0" expanded="true" />
+            <element signature="e#8383#8384#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/p05_CustomLinkedList/CustomLinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="79" column="46" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="46" />
+          <folding>
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#544#545#0" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#715#716#0" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+            <element signature="e#817#818#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1074#1075#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/customLinkedList/CustomLinkedListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="88" column="50" selection-start-line="88" selection-start-column="50" selection-end-line="88" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1430#1431#0" expanded="true" />
+            <element signature="e#1449#1450#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1820#1821#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/p06_TirePressureMonitoringSystem/Sensor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="374">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/p06_TirePressureMonitoringSystem/Alarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding>
+            <element signature="e#544#545#0" expanded="true" />
+            <element signature="e#579#580#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tirePressureSystem/TirePressureMonitoringSystemTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#287#288#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
