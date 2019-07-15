@@ -10,7 +10,7 @@ public class CustomLinkedListTest {
     private static final String SECOND_STRING_ELEMENT = "Second";
     private static final String INVALID_STRING = "Third";
     private static final int INDEX_OF_SECOND_ELEMENT = 1;
-    private static final int INVALID_INDEX = 50;
+    private static final int INVALID_INDEX = -2;
     private CustomLinkedList<String> linkedList;
 
     @Before
@@ -52,7 +52,7 @@ public class CustomLinkedListTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenRemoveAtIndexOutOfBounds() {
-        this.linkedList.removeAt(50);
+        this.linkedList.removeAt(INVALID_INDEX);
     }
 
     @Test

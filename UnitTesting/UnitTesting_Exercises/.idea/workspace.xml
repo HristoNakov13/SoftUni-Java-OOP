@@ -37,7 +37,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/tirePressureSystem/TirePressureMonitoringSystemTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="398">
@@ -46,6 +46,18 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#287#288#0" expanded="true" />
                 <element signature="e#338#339#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/bubbleSort/BubbleSortTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="75" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,9 +80,9 @@
         <option value="$PROJECT_DIR$/src/main/java/p02_ExtendedDatabase/Database.java" />
         <option value="$PROJECT_DIR$/src/test/java/databaseExtended/DatabaseExtendedTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/listIterator/ListIteratorTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/bubbleSort/BubbleSortTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/customLinkedList/CustomLinkedListTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/tirePressureSystem/TirePressureMonitoringSystemTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/bubbleSort/BubbleSortTest.java" />
       </list>
     </option>
   </component>
@@ -158,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TirePressureMonitoringSystemTest">
+  <component name="RunManager" selected="JUnit.CustomLinkedListTest">
     <configuration name="BubbleSortTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UnitTesting_Exercises" />
       <extension name="coverage">
@@ -236,10 +248,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TirePressureMonitoringSystemTest" />
         <item itemvalue="JUnit.CustomLinkedListTest" />
-        <item itemvalue="JUnit.DatabaseExtendedTest" />
         <item itemvalue="JUnit.BubbleSortTest" />
+        <item itemvalue="JUnit.TirePressureMonitoringSystemTest" />
+        <item itemvalue="JUnit.DatabaseExtendedTest" />
         <item itemvalue="JUnit.ListIteratorTest" />
       </list>
     </recent_temporary>
@@ -256,14 +268,11 @@
       <updated>1563092577355</updated>
       <workItem from="1563092578980" duration="4965000" />
       <workItem from="1563127650706" duration="16000" />
-      <workItem from="1563178264520" duration="3968000" />
+      <workItem from="1563178264520" duration="4624000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CustomLinkedListTest - 2019.07.15 at 11h 41m 54s.xml">
-      <configuration name="CustomLinkedListTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CustomLinkedListTest - 2019.07.15 at 11h 48m 09s.xml">
       <configuration name="CustomLinkedListTest" configurationId="JUnit" />
     </history-entry>
@@ -291,15 +300,18 @@
     <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 12m 51s.xml">
       <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TirePressureMonitoringSystemTest - 2019.07.15 at 12h 18m 09s.xml">
+      <configuration name="TirePressureMonitoringSystemTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8949000" />
+    <option name="totallyTimeSpent" value="9605000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -308,7 +320,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -362,16 +374,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-486">
           <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/bubbleSort/BubbleSortTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -481,6 +483,16 @@
             <element signature="imports" expanded="true" />
             <element signature="e#287#288#0" expanded="true" />
             <element signature="e#338#339#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/bubbleSort/BubbleSortTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="75" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
