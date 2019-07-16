@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface Chainblock extends Iterable<Transaction> {
+public interface Chainblock {
 
     int getCount();
 
@@ -18,15 +18,15 @@ public interface Chainblock extends Iterable<Transaction> {
 
     List<Transaction> getByTransactionStatus(TransactionStatus status);
 
-    Iterable<String> getAllSendersWithTransactionStatus(TransactionStatus status);
+    List<Transaction> getAllSendersWithTransactionStatus(TransactionStatus status);
 
-    Iterable<String> getAllReceiversWithTransactionStatus(TransactionStatus status);
+    List<Transaction> getAllReceiversWithTransactionStatus(TransactionStatus status);
 
     List<Transaction> getAllOrderedByAmountDescendingThenById();
 
     List<Transaction> getBySenderOrderedByAmountDescending(String sender);
 
-    Iterable<Transaction> getByReceiverOrderedByAmountThenById(String receiver);
+    List<Transaction> getByReceiverOrderedByAmountThenById(String receiver);
 
     List<Transaction> getByTransactionStatusAndMaximumAmount(TransactionStatus status, double amount);
 
@@ -34,6 +34,6 @@ public interface Chainblock extends Iterable<Transaction> {
 
     List<Transaction> getByReceiverAndAmountRange(String receiver, double lo, double hi);
 
-    Iterable<Transaction> getAllInAmountRange(double lo, double hi);
+    List<Transaction> getAllInAmountRange(double lo, double hi);
 
 }

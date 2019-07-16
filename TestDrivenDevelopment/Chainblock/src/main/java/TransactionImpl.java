@@ -14,23 +14,28 @@ public class TransactionImpl implements Transaction, Comparable<TransactionImpl>
         this.amount = amount;
     }
 
-    private int getId() {
+    public int getId() {
         return id;
     }
 
-    private TransactionStatus getStatus() {
+    @Override
+    public void setTransactionStatus(TransactionStatus transactionStatus) {
+        this.status = transactionStatus;
+    }
+
+    public TransactionStatus getStatus() {
         return status;
     }
 
-    private String getFrom() {
+    public String getFrom() {
         return from;
     }
 
-    private String getTo() {
+    public String getTo() {
         return to;
     }
 
-    private double getAmount() {
+    public double getAmount() {
         return amount;
     }
 
