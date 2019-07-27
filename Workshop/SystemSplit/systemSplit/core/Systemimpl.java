@@ -78,12 +78,11 @@ public class Systemimpl {
                 powerInfo
                         .append(hardware.toString())
                         .append(System.lineSeparator());
-            } else {
+            } else if (hardware instanceof HeavyHardware){
                 heavyInfo
                         .append(hardware.toString())
                         .append(System.lineSeparator());
             }
-
         }
         return String.format("%s%s", powerInfo.toString(), heavyInfo.toString().trim());
     }

@@ -19,6 +19,6 @@ public class CommandInterpreter {
         if (line.contains("(")) {
             return line.substring(0, line.indexOf("("));
         }
-        return "System Split";
+        return line;
     }
 }
