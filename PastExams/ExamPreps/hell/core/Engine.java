@@ -21,9 +21,6 @@ public class Engine {
         this.interpreter = new CommandInterpreter();
     }
 
-// commandName should call interpreter.getCommandName AFTER interpreter.interpretCommand
-// because commandName is set inside that method and will return null if called before
-
     public void run() {
         String commandName, input, output;
         List<String> commandArguments;
@@ -31,7 +28,7 @@ public class Engine {
         do {
             input = this.reader.readLine();
             commandArguments = this.interpreter.interpretCommand(input);
-            commandName = this.interpreter.getCommandName();
+            commandName = this.interpreter.getCommandName(input);
 
             output = this.commandHandler.handleCommand(commandName, commandArguments);
             this.outputWriter.writeLine(output);

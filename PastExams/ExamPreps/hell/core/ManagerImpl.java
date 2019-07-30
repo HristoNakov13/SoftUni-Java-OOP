@@ -26,48 +26,33 @@ public class ManagerImpl implements Manager {
     public String addHero(List<String> arguments) {
         String heroName = arguments.get(0);
         String type = arguments.get(1);
-        Hero hero = this.factory.createHero(heroName, type);
-        String output;
 
-        if (hero != null) {
-            this.database.addHero(hero);
-            output = String.format("Created %s - %s", type, heroName);
-        } else {
-            output = "Error with hero creation";
-        }
-        return output;
+        Hero hero = this.factory.createHero(heroName, type);
+        this.database.addHero(hero);
+
+        return String.format("Created %s - %s", type, heroName);
     }
 
     @Override
     public String addItem(List<String> arguments) {
         String itemName = arguments.get(0);
         String forHero = arguments.get(1);
-        String output;
 
         Item item = this.factory.createItem(arguments);
-        if (item != null) {
-            this.database.getHeroByName(forHero).addItem(item);
-            output = String.format("Added item - %s to Hero - %s", itemName, forHero);
-        } else {
-            output = "Error with item creation";
-        }
-        return output;
+        this.database.getHeroByName(forHero).addItem(item);
+
+        return String.format("Added item - %s to Hero - %s", itemName, forHero);
     }
 
     @Override
     public String addRecipe(List<String> arguments) {
         String recipeName = arguments.get(0);
         String forHero = arguments.get(1);
-        String output;
 
         Recipe recipe = this.factory.createRecipe(arguments);
-        if (recipe != null) {
-            this.database.getHeroByName(forHero).addRecipe(recipe);
-            output = String.format("Added recipe - %s to Hero - %s", recipeName, forHero);
-        } else {
-            output = "Error with item creation";
-        }
-        return output;
+        this.database.getHeroByName(forHero).addRecipe(recipe);
+
+        return String.format("Added recipe - %s to Hero - %s", recipeName, forHero);
     }
 
     @Override
@@ -114,7 +99,8 @@ public class ManagerImpl implements Manager {
 
     private String finalHeroInfo(Hero hero) {
         StringBuilder heroInfo = new StringBuilder();
-        heroInfo.append(String.format("###HitPoints: %d%n", hero.getHitPoints()))
+        heroInfo
+                .append(String.format("###HitPoints: %d%n", hero.getHitPoints()))
                 .append(String.format("###Damage: %d%n", hero.getDamage()))
                 .append(String.format("###Strength: %d%n", hero.getStrength()))
                 .append(String.format("###Agility: %d%n", hero.getAgility()))
@@ -129,7 +115,7 @@ public class ManagerImpl implements Manager {
             for (Item item : items) {
                 heroInfo.append(item.getName()).append(", ");
             }
-            heroInfo.deleteCharAt(heroInfo.length() - 1).deleteCharAt(heroInfo.length() - 1);
+            heroInfo.deleteCharAt(heroInfo.length() - 1).deleteCharAt(heroInfo.length() - 1); //deletes " " white space and "," at the end
         }
         return heroInfo.toString();
     }
