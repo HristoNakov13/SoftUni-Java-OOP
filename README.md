@@ -13,4 +13,4 @@ Courses:
 - [Workshop](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/Workshop/)<br/>
 - [Unit Testing](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/UnitTesting)<br/>
 - [Test Driven Development](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/TestDrivenDevelopment)<br/>
-- Past Exams
+- [Past Exams](https://github.com/HristoNakov13/SoftUni-Java-OOP/tree/master/PastExams)<br/>
