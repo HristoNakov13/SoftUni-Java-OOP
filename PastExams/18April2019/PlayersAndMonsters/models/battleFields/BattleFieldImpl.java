@@ -5,8 +5,6 @@ import models.cards.interfaces.Card;
 import models.players.Beginner;
 import models.players.interfaces.Player;
 
-
-
 public class BattleFieldImpl implements Battlefield {
     private static final int BEGINNER_HEALTH_BONUS = 40;
     private static final int BEGINNER_CARDS_DAMAGE_BONUS = 30;
@@ -31,18 +29,21 @@ public class BattleFieldImpl implements Battlefield {
     }
 
     private void battlefieldPreparation(Player attacker, Player enemy) {
-        attacker.setHealth(attacker.getHealth() + getCardsHealthModifier(attacker));
-        enemy.setHealth(enemy.getHealth() + getCardsHealthModifier(enemy));
+        int attackerDeckHealth = this.getDeckHealthModifier(attacker);
+        attacker.setHealth(attacker.getHealth() + attackerDeckHealth);
+
+        int enemyDeckHealth = this.getDeckHealthModifier(enemy);
+        enemy.setHealth(enemy.getHealth() + enemyDeckHealth);
 
         if (this.isBeginner(attacker)) {
-            this.setPlayerBonuses(attacker);
+            this.setBeginnerBonuses(attacker);
         }
         if (this.isBeginner(enemy)) {
-            this.setPlayerBonuses(enemy);
+            this.setBeginnerBonuses(enemy);
         }
     }
 
-    private int getCardsHealthModifier(Player player) {
+    private int getDeckHealthModifier(Player player) {
 //        int healthModifier = 0;
 //        List<Card> cards = player.getCardRepository().getCards();
 //        for (Card card : cards) {
@@ -56,7 +57,7 @@ public class BattleFieldImpl implements Battlefield {
                 .sum();
     }
 
-    private void setPlayerBonuses(Player player) {
+    private void setBeginnerBonuses(Player player) {
         int healthBonus = player.getHealth() + BEGINNER_HEALTH_BONUS;
         player.setHealth(healthBonus);
 
