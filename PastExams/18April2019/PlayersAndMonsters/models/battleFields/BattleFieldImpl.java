@@ -5,6 +5,8 @@ import models.cards.interfaces.Card;
 import models.players.Beginner;
 import models.players.interfaces.Player;
 
+
+
 public class BattleFieldImpl implements Battlefield {
     private static final int BEGINNER_HEALTH_BONUS = 40;
     private static final int BEGINNER_CARDS_DAMAGE_BONUS = 30;
