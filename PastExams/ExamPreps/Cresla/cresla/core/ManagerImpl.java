@@ -37,10 +37,11 @@ public class ManagerImpl implements Manager {
         this.commands.put(EXIT_COMMAND, new ExitCommand(database));
     }
 
-//    private String handleCommand(String commandName, List<String> arguments) {
-//       String output = this.commands.get(commandName).execute(arguments);
-//       return output;
-//    }
+    @Override
+    public String handleCommand(String commandName, List<String> arguments) {
+        String output = this.commands.get(commandName).execute(arguments);
+        return output;
+    }
 
     @Override
     public String reactorCommand(List<String> arguments) {
@@ -61,4 +62,5 @@ public class ManagerImpl implements Manager {
     public String exitCommand(List<String> arguments) {
         return this.commands.get(EXIT_COMMAND).execute(arguments);
     }
+
 }

@@ -31,19 +31,11 @@ public class ModuleCommand extends FactoryCommandImpl {
         int reactorId = Integer.parseInt(args.get(0));
         String type = args.get(1);
         int outputOrAbsorbtion = Integer.parseInt(args.get(2));
-
         int moduleId = -1;
+
         switch (this.getModuleType(type)) {
             case ABSORBING_MODULE:
-                AbsorbingModule absorbingModule = null;
-                switch (type) {
-                    case COOLDOWN_SYSTEM:
-                        absorbingModule = super.getFactory().createCoolDownSystem(outputOrAbsorbtion);
-                        break;
-                    case HEATPROCESSOR:
-                        absorbingModule = super.getFactory().createHeatProcessor(outputOrAbsorbtion);
-                        break;
-                }
+                AbsorbingModule absorbingModule = this.createAbsorbingModule(type, outputOrAbsorbtion);
                 this.addAbsorbingModuleToReactor(reactorId, absorbingModule);
                 moduleId = absorbingModule.getId();
                 break;
@@ -56,16 +48,27 @@ public class ModuleCommand extends FactoryCommandImpl {
         return String.format("Added %s - %d to Reactor - %d", type, moduleId, reactorId);
     }
 
+    private AbsorbingModule createAbsorbingModule(String type, int absorptionIndex) {
+        AbsorbingModule absorbingModule = null;
+        switch (type) {
+            case COOLDOWN_SYSTEM:
+                absorbingModule = super.getFactory().createCoolDownSystem(absorptionIndex);
+                break;
+            case HEATPROCESSOR:
+                absorbingModule = super.getFactory().createHeatProcessor(absorptionIndex);
+                break;
+        }
+        return absorbingModule;
+    }
+
     private void addAbsorbingModuleToReactor(int reactorID, AbsorbingModule absorbingModule) {
         super.getDatabase()
                 .addAbsorbingModuleToReactor(reactorID, absorbingModule);
-
     }
 
     private void addEnergyModuleToReactor(int reactorID, EnergyModule energyModule) {
         super.getDatabase()
                 .addEnergyModuleToReactor(reactorID, energyModule);
-
     }
 
     private String getModuleType(String type) {

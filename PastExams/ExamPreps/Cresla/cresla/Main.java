@@ -1,6 +1,5 @@
 package cresla;
 
-import cresla.core.CommandHandler;
 import cresla.core.Engine;
 import cresla.core.InputInterpreter;
 import cresla.core.ManagerImpl;
@@ -18,9 +17,7 @@ public class Main {
         OutputWriter outputWriter = new OutputWriterImpl();
 
         Manager manager = new ManagerImpl();
-        CommandHandler commandHandler = new CommandHandler(manager);
-
-        Engine engine = new Engine(inputInterpreter, reader, outputWriter, commandHandler);
+        Engine engine = new Engine(inputInterpreter, reader, outputWriter, manager);
         engine.run();
     }
 }

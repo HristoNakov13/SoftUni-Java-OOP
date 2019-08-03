@@ -10,4 +10,6 @@ public interface Manager {
     String reportCommand(List<String> arguments);
 
     String exitCommand(List<String> arguments);
+
+    String handleCommand(String commandName, List<String> arguments);
 }

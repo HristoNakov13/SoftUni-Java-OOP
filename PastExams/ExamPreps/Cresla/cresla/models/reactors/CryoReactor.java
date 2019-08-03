@@ -10,6 +10,10 @@ public class CryoReactor extends ReactorImpl {
 
     @Override
     public long getTotalEnergyOutput() {
-       return super.getTotalEnergyOutput() * this.cryoProductionIndex;
+        long energyOutput = super.getTotalEnergyOutput() * this.cryoProductionIndex;
+//        if (energyOutput > super.getTotalHeatAbsorbing()) {
+//            energyOutput = 0;
+//        }
+       return energyOutput;
     }
 }

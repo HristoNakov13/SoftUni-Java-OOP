@@ -39,6 +39,6 @@ public class ExitCommand extends CommandImpl {
                 .append(String.format("Total Energy Output: %d%n", totalEnergyOutput))
                 .append(String.format("Total Heat Absorbing: %d", totalHeatAbsorption));
 
-        return null;
+        return report.toString();
     }
 }

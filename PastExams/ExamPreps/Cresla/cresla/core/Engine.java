@@ -1,6 +1,7 @@
 package cresla.core;
 
 import cresla.interfaces.InputReader;
+import cresla.interfaces.Manager;
 import cresla.interfaces.OutputWriter;
 
 import java.util.List;
@@ -10,17 +11,18 @@ public class Engine {
     private InputInterpreter inputInterpreter;
     private InputReader inputReader;
     private OutputWriter outputWriter;
-   private CommandHandler commandHandler;
+   private Manager manager;
 
 
-    public Engine(InputInterpreter inputInterpreter, InputReader inputReader, OutputWriter outputWriter, CommandHandler commandHandler) {
+    public Engine(InputInterpreter inputInterpreter, InputReader inputReader, OutputWriter outputWriter, Manager manager) {
         this.inputInterpreter = inputInterpreter;
         this.inputReader = inputReader;
         this.outputWriter = outputWriter;
-        this.commandHandler = commandHandler;
+        this.manager = manager;
+
     }
 
-    //adding public logic to interfaces not allowed
+    //adding public logic to interfaces not allowed for second problem?
     public void run() {
         String input, commandName, output;
         List<String> commandArguments;
@@ -29,7 +31,7 @@ public class Engine {
             commandName = this.inputInterpreter.getCommandName(input);
             commandArguments = this.inputInterpreter.getCommandArguments(input);
 
-            output = this.commandHandler.handleCommand(commandName, commandArguments);
+            output = this.manager.handleCommand(commandName, commandArguments);
             this.outputWriter.writeLine(output);
 
         } while (!commandName.equals(END_PROGRAM_COMMAND));
