@@ -38,6 +38,11 @@ public class RaceImpl implements Race {
 
     @Override
     public void addRider(Rider rider) {
+        this.validateRider(rider);
+        this.riders.add(rider);
+    }
+
+    private void validateRider(Rider rider) {
         if (rider == null) {
             throw new NullPointerException(ExceptionMessages.RIDER_INVALID);
         }
@@ -47,21 +52,9 @@ public class RaceImpl implements Race {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RIDER_NOT_PARTICIPATE, riderName));
         }
 
-        if (riderIsInTheRace(riderName)) {
+        if (this.riders.contains(rider)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RIDER_ALREADY_ADDED, riderName, this.getName()));
         }
-        this.riders.add(rider);
-    }
-
-    private boolean riderIsInTheRace(String name) {
-        boolean isInTheRace = false;
-        for (Rider rider : this.riders) {
-            if (rider.getName().equals(name)) {
-                isInTheRace = true;
-                break;
-            }
-        }
-        return isInTheRace;
     }
 
     private void setName(String name) {
@@ -87,7 +80,7 @@ public class RaceImpl implements Race {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Race compare = (Race)o;
+        Race compare = (Race) o;
         return this.getName().equals(compare.getName());
     }
 
