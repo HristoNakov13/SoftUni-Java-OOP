@@ -93,22 +93,21 @@ public class ChampionshipControllerImpl implements ChampionshipController {
         this.validateRace(race, raceName);
         this.confirmRaceCanStart(race);
 
-        int laps = race.getLaps();
-        Collection<Rider> riders = race.getRiders();
+        List<Rider> winners = this.getWinners(race);
+        return this.concludeRace(winners, race);
+    }
 
-        List<Rider> winners = riders.stream().sorted((rider1, rider2) -> {
-            double rider2Points = rider2.getMotorcycle().calculateRacePoints(laps);
-            double rider1Points = rider1.getMotorcycle().calculateRacePoints(laps);
-            return Double.compare(rider2Points, rider1Points);
-        }).collect(Collectors.toList());
+    private String concludeRace(List<Rider> winners, Race race) {
 
-        Rider winner = winners.get(0);
-        winner.winRace();
+        Rider firstPlaceHolder = winners.get(0);
+        firstPlaceHolder.winRace();
         this.raceRepository.remove(race);
+
+        String raceName = race.getName();
 
         StringBuilder winnersInfo = new StringBuilder();
         winnersInfo
-                .append(String.format(OutputMessages.RIDER_FIRST_POSITION, winner.getName(), raceName))
+                .append(String.format(OutputMessages.RIDER_FIRST_POSITION, firstPlaceHolder.getName(), raceName))
                 .append(System.lineSeparator())
                 .append(String.format(OutputMessages.RIDER_SECOND_POSITION, winners.get(1).getName(), raceName))
                 .append(System.lineSeparator())
@@ -121,6 +120,18 @@ public class ChampionshipControllerImpl implements ChampionshipController {
         if (raceParticipants < MINIMUM_PARTICIPANTS_IN_RACE_NEEDED) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RACE_INVALID, race.getName(), MINIMUM_PARTICIPANTS_IN_RACE_NEEDED));
         }
+    }
+
+    private List<Rider> getWinners(Race race) {
+        int laps = race.getLaps();
+        Collection<Rider> riders = race.getRiders();
+
+        List<Rider> winners = riders.stream().sorted((rider1, rider2) -> {
+            double rider2Points = rider2.getMotorcycle().calculateRacePoints(laps);
+            double rider1Points = rider1.getMotorcycle().calculateRacePoints(laps);
+            return Double.compare(rider2Points, rider1Points);
+        }).collect(Collectors.toList());
+        return winners;
     }
 
     @Override
