@@ -25,7 +25,7 @@ public class ChampionshipControllerImpl implements ChampionshipController {
     private Factory factory;
 
     public ChampionshipControllerImpl() {
-        this.motorcycleRepository = new MotorcycleRepository<>();
+        this.motorcycleRepository = new MotorcycleRepository();
         this.riderRepository = new RiderRepository();
         this.raceRepository = new RaceRepository();
         this.factory = new FactoryImpl();
@@ -48,42 +48,51 @@ public class ChampionshipControllerImpl implements ChampionshipController {
     @Override
     public String addMotorcycleToRider(String riderName, String motorcycleModel) {
         Rider rider = this.riderRepository.getByName(riderName);
+        this.validateRider(rider, riderName);
 
+        Motorcycle motorcycle = this.motorcycleRepository.getByName(motorcycleModel);
+        this.validateMotorcycle(motorcycle, motorcycleModel);
+
+        rider.addMotorcycle(motorcycle);
+        return String.format(OutputMessages.MOTORCYCLE_ADDED, riderName, motorcycleModel);
+    }
+
+    private void validateRider(Rider rider, String riderName) {
         if (rider == null) {
             throw new NullPointerException(String.format(ExceptionMessages.RIDER_NOT_FOUND, riderName));
         }
-        Motorcycle motorcycle = this.motorcycleRepository.getByName(motorcycleModel);
+    }
 
+    private void validateMotorcycle(Motorcycle motorcycle, String motorcycleModel) {
         if (motorcycle == null) {
             throw new NullPointerException(String.format(ExceptionMessages.MOTORCYCLE_NOT_FOUND, motorcycleModel));
         }
-        rider.addMotorcycle(motorcycle);
-        return String.format(OutputMessages.MOTORCYCLE_ADDED, riderName, motorcycleModel);
     }
 
     @Override
     public String addRiderToRace(String raceName, String riderName) {
         Race race = this.raceRepository.getByName(raceName);
+        this.validateRace(race, raceName);
 
+        Rider rider = this.riderRepository.getByName(riderName);
+        this.validateRider(rider, riderName);
+
+        race.addRider(rider);
+        return String.format(OutputMessages.RIDER_ADDED, riderName, raceName);
+    }
+
+    private void validateRace(Race race, String raceName) {
         if (race == null) {
             throw new NullPointerException(String.format(ExceptionMessages.RACE_NOT_FOUND, raceName));
         }
-        Rider rider = this.riderRepository.getByName(riderName);
-
-        if (rider == null) {
-            throw new NullPointerException(String.format(ExceptionMessages.RIDER_NOT_FOUND, riderName));
-        }
-        race.addRider(rider);
-        return String.format(OutputMessages.RIDER_ADDED, riderName, raceName);
     }
 
     @Override
     public String startRace(String raceName) {
         Race race = this.raceRepository.getByName(raceName);
-        if (race == null) {
-            throw new NullPointerException(String.format(ExceptionMessages.RACE_NOT_FOUND, raceName));
-        }
-        this.validateRace(race);
+        this.validateRace(race, raceName);
+        this.confirmRaceCanStart(race);
+
         int laps = race.getLaps();
         Collection<Rider> riders = race.getRiders();
 
@@ -92,20 +101,22 @@ public class ChampionshipControllerImpl implements ChampionshipController {
             double rider1Points = rider1.getMotorcycle().calculateRacePoints(laps);
             return Double.compare(rider2Points, rider1Points);
         }).collect(Collectors.toList());
-        winners.get(0).winRace();
+
+        Rider winner = winners.get(0);
+        winner.winRace();
         this.raceRepository.remove(race);
 
         StringBuilder winnersInfo = new StringBuilder();
         winnersInfo
-                .append(String.format(OutputMessages.RIDER_FIRST_POSITION, winners.get(0).getName(), raceName))
+                .append(String.format(OutputMessages.RIDER_FIRST_POSITION, winner.getName(), raceName))
                 .append(System.lineSeparator())
                 .append(String.format(OutputMessages.RIDER_SECOND_POSITION, winners.get(1).getName(), raceName))
                 .append(System.lineSeparator())
-                .append(String.format(OutputMessages.RIDER_THIRD_POSITION,  winners.get(2).getName(), raceName));
+                .append(String.format(OutputMessages.RIDER_THIRD_POSITION, winners.get(2).getName(), raceName));
         return winnersInfo.toString();
     }
 
-    private void validateRace(Race race) {
+    private void confirmRaceCanStart(Race race) {
         int raceParticipants = race.getRiders().size();
         if (raceParticipants < MINIMUM_PARTICIPANTS_IN_RACE_NEEDED) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RACE_INVALID, race.getName(), MINIMUM_PARTICIPANTS_IN_RACE_NEEDED));

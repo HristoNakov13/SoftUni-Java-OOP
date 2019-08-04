@@ -9,7 +9,7 @@ public class RiderRepository extends RepositoryImpl<Rider> {
     public Rider getByName(String name) {
         Rider foundRider = null;
 
-        for (Rider  rider : super.getAll()) {
+        for (Rider rider : super.getAll()) {
             if (rider.getName().equals(name)) {
                 foundRider = rider;
                 break;
@@ -19,16 +19,16 @@ public class RiderRepository extends RepositoryImpl<Rider> {
     }
 
     public void add(Rider model) {
-        Rider searchForRider = this.getByName(model.getName());
-        if (searchForRider == null) {
-            super.add(model);
-        } else {
+
+        if (super.getAll().contains(model)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RIDER_EXISTS, model.getName()));
+        } else {
+            super.add(model);
         }
     }
 
     @Override
     public boolean remove(Rider model) {
-        return super.getAll().removeIf(rider -> rider.getName().equals(model.getName()));
+        return super.remove(model);
     }
 }

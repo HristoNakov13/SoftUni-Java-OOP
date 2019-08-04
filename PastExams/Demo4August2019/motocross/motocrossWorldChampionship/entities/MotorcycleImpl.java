@@ -2,9 +2,6 @@ package motocrossWorldChampionship.entities;
 
 import motocrossWorldChampionship.common.ExceptionMessages;
 import motocrossWorldChampionship.entities.interfaces.Motorcycle;
-//•	model – String (If the model is null, whitespace or less than 4 symbols, throw an IllegalArgumentException with message "Model {model} cannot be less than 4 symbols.") – All models are unique
-//•	horsePower – int (every type of motorcycle has a different range of valid horsepower. If the horsepower is not in the valid range, throw an IllegalArgumentException with message "Invalid horse power: {horsepower}.")
-//•	cubicCentimeters – double(every type of motorcycle has different cubic centimeters)
 
 public abstract class MotorcycleImpl implements Motorcycle {
     private static final int MINIMUM_VALID_NAME_LENGTH = 4;
@@ -52,5 +49,20 @@ public abstract class MotorcycleImpl implements Motorcycle {
 
     private boolean isValidModel(String model) {
         return model != null && !model.trim().isEmpty() && model.length() >= MINIMUM_VALID_NAME_LENGTH;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (!(o instanceof MotorcycleImpl)) {
+            return false;
+        }
+        Motorcycle compare = (Motorcycle) o;
+        return this.getModel().equals(compare.getModel());
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }

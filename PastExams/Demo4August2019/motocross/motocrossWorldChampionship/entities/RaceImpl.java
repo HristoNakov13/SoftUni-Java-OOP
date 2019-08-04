@@ -7,7 +7,6 @@ import motocrossWorldChampionship.entities.interfaces.Rider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public class RaceImpl implements Race {
     private static final int MINIMUM_VALID_NAME_LENGTH = 5;
@@ -81,5 +80,19 @@ public class RaceImpl implements Race {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_NUMBER_OF_LAPS);
         }
         this.laps = laps;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Race compare = (Race)o;
+        return this.getName().equals(compare.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }

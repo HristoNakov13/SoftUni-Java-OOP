@@ -1,34 +1,33 @@
 package motocrossWorldChampionship.repositories;
 
-
 import motocrossWorldChampionship.common.ExceptionMessages;
 import motocrossWorldChampionship.entities.interfaces.Motorcycle;
 
-public class MotorcycleRepository<T> extends RepositoryImpl<Motorcycle> {
+public class MotorcycleRepository extends RepositoryImpl<Motorcycle> {
 
     @Override
     public Motorcycle getByName(String name) {
         Motorcycle motorcycle = null;
-        for (Motorcycle motor : super.getAll()) {
 
+        for (Motorcycle motor : super.getAll()) {
             if (motor.getModel().equals(name)) {
                 motorcycle = motor;
+                break;
             }
         }
         return motorcycle;
     }
 
     public void add(Motorcycle model) {
-        Motorcycle searchForMotorcycle = this.getByName(model.getModel());
-        if (searchForMotorcycle == null) {
-            super.add(model);
-        } else {
+        if (super.getAll().contains(model)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.MOTORCYCLE_EXISTS, model.getModel()));
+        } else {
+            super.add(model);
         }
     }
 
     @Override
     public boolean remove(Motorcycle model) {
-        return super.getAll().removeIf(motorcycle -> motorcycle.getModel().equals(model.getModel()));
+        return super.getAll().remove(model);
     }
 }

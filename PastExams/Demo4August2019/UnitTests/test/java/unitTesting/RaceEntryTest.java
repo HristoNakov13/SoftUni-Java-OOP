@@ -4,6 +4,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class RaceEntryTest {
     private static final String EXISTING_RIDER = "Rider %s is already added";
     private static final String RIDER_INVALID = "Rider cannot be null.";
@@ -93,13 +98,15 @@ public class RaceEntryTest {
     @Test
     public void shouldReturnCorrectAverageHorsePower() {
         this.raceEntry.addRider(DEFAULT_RIDER);
-        double actualAverageHorsePower = this.raceEntry.calculateAverageHorsePower();
+        BigDecimal actualAverageHorsePower = BigDecimal.valueOf(this.raceEntry.calculateAverageHorsePower());
 
-        Assert.assertEquals(AVERAGE_HORSEPOWER, actualAverageHorsePower, DELTA_TEST);
+        Assert.assertEquals(BigDecimal.valueOf(AVERAGE_HORSEPOWER), actualAverageHorsePower);
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void shouldThrowWhenModifyingReturnedCollection(){
+        this.raceEntry.getRiders().remove(RIDER);
         this.raceEntry.getRiders().add(DEFAULT_RIDER);
+
     }
 }

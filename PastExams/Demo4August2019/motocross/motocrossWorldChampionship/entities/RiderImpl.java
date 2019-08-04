@@ -3,10 +3,6 @@ package motocrossWorldChampionship.entities;
 import motocrossWorldChampionship.common.ExceptionMessages;
 import motocrossWorldChampionship.entities.interfaces.Motorcycle;
 import motocrossWorldChampionship.entities.interfaces.Rider;
-//•	name – String (If the name is null, empty or less than 5 symbols throw an IllegalArgumentException with message "Name {name} cannot be less than 5 symbols.") – All names are unique
-//•	motorcycle – Motorcycle
-//•	numberOfWins – int
-//•	canParticipate – boolean (default behaviour is false). A rider can participate in a race, ONLY if he has motorcycle (motorcycle is not null)
 
 public class RiderImpl implements Rider {
     private static final int MINIMUM_VALID_NAME_LENGTH = 5;
@@ -63,5 +59,19 @@ public class RiderImpl implements Rider {
 
     private boolean isValidName(String name) {
         return name != null && !name.trim().isEmpty() && name.length() >= MINIMUM_VALID_NAME_LENGTH;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Rider compare = (Rider)o;
+        return this.getName().equals(compare.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }
