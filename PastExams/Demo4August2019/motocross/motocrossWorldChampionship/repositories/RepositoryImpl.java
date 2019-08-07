@@ -7,10 +7,10 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class RepositoryImpl<T> implements Repository<T> {
-    private List<T> collection;
+    private List<T> models;
 
     protected RepositoryImpl() {
-        this.collection = new ArrayList<>();
+        this.models = new ArrayList<>();
     }
 
     @Override
@@ -20,16 +20,16 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
 
     @Override
     public Collection<T> getAll() {
-        return this.collection;
+        return this.models;
     }
 
     @Override
     public void add(T model) {
-        this.collection.add(model);
+        this.models.add(model);
     }
 
     @Override
     public boolean remove(T model) {
-        return this.collection.remove(model);
+        return this.models.remove(model);
     }
 }

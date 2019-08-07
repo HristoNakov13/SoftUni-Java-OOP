@@ -8,15 +8,12 @@ public class RaceRepository extends RepositoryImpl<Race> {
 
     @Override
     public Race getByName(String name) {
-        Race foundRace = null;
-
-        for (Race race : super.getAll()) {
-            if (race.getName().equals(name)) {
-                foundRace = race;
-                break;
-            }
-        }
-        return foundRace;
+        return super
+                .getAll()
+                .stream()
+                .filter(race -> race.getName().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

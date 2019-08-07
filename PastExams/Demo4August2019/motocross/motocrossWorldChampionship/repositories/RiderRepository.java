@@ -7,15 +7,12 @@ public class RiderRepository extends RepositoryImpl<Rider> {
 
     @Override
     public Rider getByName(String name) {
-        Rider foundRider = null;
-
-        for (Rider rider : super.getAll()) {
-            if (rider.getName().equals(name)) {
-                foundRider = rider;
-                break;
-            }
-        }
-        return foundRider;
+        return super
+                .getAll()
+                .stream()
+                .filter(rider -> rider.getName().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

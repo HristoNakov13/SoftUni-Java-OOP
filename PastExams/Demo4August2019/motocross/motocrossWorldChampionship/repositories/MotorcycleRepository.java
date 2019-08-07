@@ -7,15 +7,12 @@ public class MotorcycleRepository extends RepositoryImpl<Motorcycle> {
 
     @Override
     public Motorcycle getByName(String name) {
-        Motorcycle motorcycle = null;
-
-        for (Motorcycle motor : super.getAll()) {
-            if (motor.getModel().equals(name)) {
-                motorcycle = motor;
-                break;
-            }
-        }
-        return motorcycle;
+        return super
+                .getAll()
+                .stream()
+                .filter(motorcycle -> motorcycle.getModel().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
