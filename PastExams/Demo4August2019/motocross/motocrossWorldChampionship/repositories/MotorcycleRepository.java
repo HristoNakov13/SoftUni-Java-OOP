@@ -18,16 +18,12 @@ public class MotorcycleRepository extends RepositoryImpl<Motorcycle> {
         return motorcycle;
     }
 
+    @Override
     public void add(Motorcycle model) {
         if (super.getAll().contains(model)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.MOTORCYCLE_EXISTS, model.getModel()));
         } else {
             super.add(model);
         }
-    }
-
-    @Override
-    public boolean remove(Motorcycle model) {
-        return super.getAll().remove(model);
     }
 }

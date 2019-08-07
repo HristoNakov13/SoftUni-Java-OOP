@@ -18,17 +18,12 @@ public class RiderRepository extends RepositoryImpl<Rider> {
         return foundRider;
     }
 
+    @Override
     public void add(Rider model) {
-
         if (super.getAll().contains(model)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RIDER_EXISTS, model.getName()));
         } else {
             super.add(model);
         }
-    }
-
-    @Override
-    public boolean remove(Rider model) {
-        return super.remove(model);
     }
 }

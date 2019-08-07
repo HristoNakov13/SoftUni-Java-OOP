@@ -30,6 +30,6 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
 
     @Override
     public boolean remove(T model) {
-        return false;
+        return this.collection.remove(model);
     }
 }

@@ -19,16 +19,12 @@ public class RaceRepository extends RepositoryImpl<Race> {
         return foundRace;
     }
 
+    @Override
     public void add(Race model) {
         if (super.getAll().contains(model)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RACE_EXISTS, model.getName()));
         } else {
             super.add(model);
         }
-    }
-
-    @Override
-    public boolean remove(Race model) {
-        return super.remove(model);
     }
 }
