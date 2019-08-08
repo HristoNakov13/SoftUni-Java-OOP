@@ -2,12 +2,22 @@ package motocrossWorldChampionship.repositories;
 
 import motocrossWorldChampionship.common.ExceptionMessages;
 import motocrossWorldChampionship.entities.interfaces.Motorcycle;
+import motocrossWorldChampionship.repositories.interfaces.Repository;
 
-public class MotorcycleRepository extends RepositoryImpl<Motorcycle> {
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+public class MotorcycleRepository implements Repository<Motorcycle> {
+    private Collection<Motorcycle> models;
+
+    public MotorcycleRepository() {
+        this.models = new ArrayList<>();
+    }
 
     @Override
     public Motorcycle getByName(String name) {
-        return super
+        return this
                 .getAll()
                 .stream()
                 .filter(motorcycle -> motorcycle.getModel().equals(name))
@@ -16,11 +26,21 @@ public class MotorcycleRepository extends RepositoryImpl<Motorcycle> {
     }
 
     @Override
+    public Collection<Motorcycle> getAll() {
+        return Collections.unmodifiableCollection(this.models);
+    }
+
+    @Override
     public void add(Motorcycle model) {
-        if (super.getAll().contains(model)) {
+        if (this.getAll().contains(model)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.MOTORCYCLE_EXISTS, model.getModel()));
         } else {
-            super.add(model);
+            this.models.add(model);
         }
+    }
+
+    @Override
+    public boolean remove(Motorcycle model) {
+        return this.models.remove(model);
     }
 }

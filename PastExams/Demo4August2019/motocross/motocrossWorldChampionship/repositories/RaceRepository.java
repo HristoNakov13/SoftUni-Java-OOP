@@ -3,12 +3,23 @@ package motocrossWorldChampionship.repositories;
 import motocrossWorldChampionship.common.ExceptionMessages;
 import motocrossWorldChampionship.entities.interfaces.Motorcycle;
 import motocrossWorldChampionship.entities.interfaces.Race;
+import motocrossWorldChampionship.repositories.interfaces.Repository;
 
-public class RaceRepository extends RepositoryImpl<Race> {
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+public class RaceRepository implements Repository<Race> {
+    private List<Race> models;
+
+    public RaceRepository() {
+        this.models = new ArrayList<>();
+    }
 
     @Override
     public Race getByName(String name) {
-        return super
+        return this
                 .getAll()
                 .stream()
                 .filter(race -> race.getName().equals(name))
@@ -16,12 +27,23 @@ public class RaceRepository extends RepositoryImpl<Race> {
                 .orElse(null);
     }
 
+
+    @Override
+    public Collection<Race> getAll() {
+        return Collections.unmodifiableCollection(this.models);
+    }
+
     @Override
     public void add(Race model) {
-        if (super.getAll().contains(model)) {
+        if (this.getAll().contains(model)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RACE_EXISTS, model.getName()));
         } else {
-            super.add(model);
+            this.models.add(model);
         }
+    }
+
+    @Override
+    public boolean remove(Race model) {
+        return this.models.remove(model);
     }
 }

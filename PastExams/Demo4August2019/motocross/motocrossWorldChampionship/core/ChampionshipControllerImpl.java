@@ -7,9 +7,6 @@ import motocrossWorldChampionship.core.interfaces.Factory;
 import motocrossWorldChampionship.entities.interfaces.Motorcycle;
 import motocrossWorldChampionship.entities.interfaces.Race;
 import motocrossWorldChampionship.entities.interfaces.Rider;
-import motocrossWorldChampionship.repositories.MotorcycleRepository;
-import motocrossWorldChampionship.repositories.RaceRepository;
-import motocrossWorldChampionship.repositories.RiderRepository;
 import motocrossWorldChampionship.repositories.interfaces.Repository;
 
 import java.util.Collection;
@@ -19,15 +16,15 @@ import java.util.stream.Collectors;
 public class ChampionshipControllerImpl implements ChampionshipController {
     private static final String MOTORCYCLE_SUFFIX = "Motorcycle";
     private static final int MINIMUM_PARTICIPANTS_IN_RACE_NEEDED = 3;
+    private Repository<Rider> riderRepository;
     private Repository<Motorcycle> motorcycleRepository;
     private Repository<Race> raceRepository;
-    private Repository<Rider> riderRepository;
     private Factory factory;
 
-    public ChampionshipControllerImpl() {
-        this.motorcycleRepository = new MotorcycleRepository();
-        this.riderRepository = new RiderRepository();
-        this.raceRepository = new RaceRepository();
+    public ChampionshipControllerImpl(Repository<Rider> riderRepository, Repository<Motorcycle> motorcycleRepository, Repository<Race> raceRepository) {
+        this.riderRepository = riderRepository;
+        this.motorcycleRepository = motorcycleRepository;
+        this.raceRepository = raceRepository;
         this.factory = new FactoryImpl();
     }
 
