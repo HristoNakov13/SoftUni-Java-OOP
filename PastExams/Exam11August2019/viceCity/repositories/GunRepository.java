@@ -6,7 +6,7 @@ import viceCity.repositories.interfaces.Repository;
 import java.util.*;
 
 public class GunRepository implements Repository<Gun> {
-    Map<String, Gun> guns;
+    private Map<String, Gun> guns;
 
     public GunRepository() {
         this.guns = new LinkedHashMap<>();
@@ -20,7 +20,6 @@ public class GunRepository implements Repository<Gun> {
     @Override
     public void add(Gun model) {
         this.guns.putIfAbsent(model.getName(), model);
-
     }
 
     @Override

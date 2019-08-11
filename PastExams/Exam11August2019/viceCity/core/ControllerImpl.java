@@ -14,6 +14,7 @@ import viceCity.models.players.Player;
 import java.util.*;
 
 public class ControllerImpl implements Controller {
+    private static final String MAIN_PLAYER_FAMILY_NAME = "Vercetti";
     private Player mainPlayer;
     private List<Player> players;
     private Deque<Gun> gunQueue;
@@ -25,6 +26,7 @@ public class ControllerImpl implements Controller {
         this.gunQueue = new ArrayDeque<>();
         this.gangNeighbourhood = new GangNeighbourhood();
     }
+
     @Override
     public String addPlayer(String name) {
         Player player = new CivilPlayer(name);
@@ -32,99 +34,135 @@ public class ControllerImpl implements Controller {
         return String.format(ConstantMessages.PLAYER_ADDED, name);
     }
 
-
     @Override
     public String addGun(String type, String name) {
-        Gun gun = null;
-        String output = ConstantMessages.GUN_TYPE_INVALID;
-        if (type.equals("Pistol")) {
-            gun = new Pistol(name);
-            output = String.format(ConstantMessages.GUN_ADDED, name, type);
-        } else if (type.equals("Rifle")) {
-            gun = new Rifle(name);
-            output = String.format(ConstantMessages.GUN_ADDED, name, type);
-        }
+        String output;
+        Gun gun = this.createGun(type, name);
+
         if (gun != null) {
-            this.gunQueue.offer(gun);
+            output = String.format(ConstantMessages.GUN_ADDED, name, type);
+            this.addGunToQueue(gun);
+        } else {
+            output = ConstantMessages.GUN_TYPE_INVALID;
         }
         return output;
+    }
+
+    private void addGunToQueue(Gun gun) {
+        this.gunQueue.offer(gun);
+    }
+
+    private Gun createGun(String type, String name) {
+        Gun gun = null;
+        if (type.equals("Pistol")) {
+            gun = new Pistol(name);
+        } else if (type.equals("Rifle")) {
+            gun = new Rifle(name);
+        }
+        return gun;
+    }
+
+    private boolean hasAvailableGuns() {
+        return !this.gunQueue.isEmpty();
     }
 
     @Override
     public String addGunToPlayer(String name) {
-        if (this.gunQueue.isEmpty()) {
+        if (!this.hasAvailableGuns()) {
             return ConstantMessages.GUN_QUEUE_IS_EMPTY;
         }
-        String output;
         Gun gun;
-        if (name.equals("Vercetti")) {
-            gun = this.gunQueue.poll();
+        if (name.equals(MAIN_PLAYER_FAMILY_NAME)) {
+            gun = this.getAGunFromQueue();
             this.mainPlayer.getGunRepository().add(gun);
-            output = String.format(ConstantMessages.GUN_ADDED_TO_MAIN_PLAYER, gun.getName(), "Tommy Vercetti");
+            return String.format(ConstantMessages.GUN_ADDED_TO_MAIN_PLAYER, gun.getName(), this.mainPlayer.getName());
+        }
+
+        Player player = this.getPlayerByName(name);
+        String output;
+
+        if (player != null) {
+            gun = this.getAGunFromQueue();
+            player.getGunRepository().add(gun);
+            output = String.format(ConstantMessages.GUN_ADDED_TO_CIVIL_PLAYER, gun.getName(), name);
         } else {
-            Player player = null;
-            for (Player player1 : players) {
-                if (player1.getName().equals(name)) {
-                    player = player1;
-                    break;
-                }
-            }
-            if (player != null) {
-                gun = this.gunQueue.poll();
-                player.getGunRepository().add(gun);
-                output = String.format(ConstantMessages.GUN_ADDED_TO_CIVIL_PLAYER, gun.getName(), name);
-            } else {
-                output = ConstantMessages.CIVIL_PLAYER_DOES_NOT_EXIST;
-            }
+            output = ConstantMessages.CIVIL_PLAYER_DOES_NOT_EXIST;
         }
         return output;
+    }
+    private Gun getAGunFromQueue() {
+        return this.gunQueue.poll();
+    }
+
+    private Collection<Player> getAllCivilPlayers() {
+        return Collections.unmodifiableCollection(this.players);
+    }
+
+    private Player getPlayerByName(String name) {
+        Player player = null;
+        for (Player currentPlayer : this.getAllCivilPlayers()) {
+            if (currentPlayer.getName().equals(name)) {
+                player = currentPlayer;
+                break;
+            }
+        }
+        return player;
     }
 
     @Override
     public String fight() {
-        int initialHp = this.mainPlayer.getLifePoints();
-        int initialCivieHP = 0;
-        for (Player player : this.players) {
-            initialCivieHP += player.getLifePoints();
-        }
+        int initialMainPlayerHP = this.mainPlayer.getLifePoints();
+        int initialCiviliansHP = this.calculateAllCivilianHealthPoints();
 
+        this.gangNeighbourhood.action(this.mainPlayer, this.getAllCivilPlayers());
 
-        this.gangNeighbourhood.action(mainPlayer, players);
-
-        int afterFightHp = this.mainPlayer.getLifePoints();
-        int afterFightHpCivies = 0;
-
-        for (Player player : this.players) {
-            afterFightHpCivies += player.getLifePoints();
-        }
-        String output = "";
-
-        if (initialHp == afterFightHp && initialCivieHP == afterFightHpCivies) {
-            output = ConstantMessages.FIGHT_HOT_HAPPENED;
-        } else {
-            StringBuilder report = new StringBuilder();
-            report
-                    .append(ConstantMessages.FIGHT_HAPPENED)
-                    .append(System.lineSeparator());
-            ArrayDeque<String> markForRemoval = new ArrayDeque<>();
-            int killedCivies = 0;
-            for (Player player : this.players) {
-                if (!player.isAlive()) {
-                    killedCivies ++;
-                    markForRemoval.offer(player.getName());
-                }
-            }
-            while (!markForRemoval.isEmpty()) {
-                String player = markForRemoval.poll();
-                this.players.removeIf(current -> current.getName().equals(player));
-            }
-            report.append(String.format(ConstantMessages.MAIN_PLAYER_LIVE_POINTS_MESSAGE, mainPlayer.getLifePoints()))
-                    .append(System.lineSeparator())
-                    .append(String.format(ConstantMessages.MAIN_PLAYER_KILLED_CIVIL_PLAYERS_MESSAGE, killedCivies))
-                    .append(System.lineSeparator())
-                    .append(String.format(ConstantMessages.CIVIL_PLAYERS_LEFT_MESSAGE, this.players.size()));
-            output = report.toString();
-        }
+        String output = this.postActionReport(initialMainPlayerHP, initialCiviliansHP);
         return output;
+    }
+
+    private int calculateAllCivilianHealthPoints() {
+        int healthPoints = 0;
+        for (Player civilian : this.getAllCivilPlayers()) {
+            healthPoints += civilian.getLifePoints();
+        }
+        return healthPoints;
+    }
+
+    private String postActionReport(int initialMainPlayerHP, int initialCiviliansHP) {
+        int afterFightMainPlayerHP = this.mainPlayer.getLifePoints();
+        int afterFightCiviliansHP = this.calculateAllCivilianHealthPoints();
+
+        boolean noFightingOccurred = initialMainPlayerHP == afterFightMainPlayerHP
+                && initialCiviliansHP == afterFightCiviliansHP;
+
+        if (noFightingOccurred) {
+            return ConstantMessages.FIGHT_HOT_HAPPENED;
+        } else {
+            return this.getFightStats();
+        }
+    }
+
+    private String getFightStats() {
+        int allCiviliansCount = this.getCivilianPlayersCount();
+        this.removeDeadCivilians();
+        int killedCivilians = allCiviliansCount - this.getCivilianPlayersCount();
+
+        StringBuilder report = new StringBuilder();
+        report
+                .append(ConstantMessages.FIGHT_HAPPENED)
+                .append(System.lineSeparator())
+                .append(String.format(ConstantMessages.MAIN_PLAYER_LIVE_POINTS_MESSAGE, mainPlayer.getLifePoints()))
+                .append(String.format(ConstantMessages.MAIN_PLAYER_KILLED_CIVIL_PLAYERS_MESSAGE, killedCivilians))
+                .append(String.format(ConstantMessages.CIVIL_PLAYERS_LEFT_MESSAGE, this.players.size()));
+
+        return report.toString();
+    }
+
+    private int getCivilianPlayersCount () {
+        return this.players.size();
+    }
+
+    private void removeDeadCivilians() {
+        this.players.removeIf(player -> !player.isAlive());
     }
 }

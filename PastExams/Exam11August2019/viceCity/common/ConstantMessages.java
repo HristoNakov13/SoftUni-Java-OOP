@@ -19,9 +19,9 @@ public class ConstantMessages {
 
     public static final String FIGHT_HAPPENED = "A fight happened:";
 
-    public static final String MAIN_PLAYER_LIVE_POINTS_MESSAGE = "Tommy live points: %d!";
+    public static final String MAIN_PLAYER_LIVE_POINTS_MESSAGE = "Tommy live points: %d!%n";
 
-    public static final String MAIN_PLAYER_KILLED_CIVIL_PLAYERS_MESSAGE = "Tommy has killed: %d players!";
+    public static final String MAIN_PLAYER_KILLED_CIVIL_PLAYERS_MESSAGE = "Tommy has killed: %d players!%n";
 
     public static final String CIVIL_PLAYERS_LEFT_MESSAGE = "Left Civil Players: %d!";
 }

@@ -21,7 +21,7 @@ public class EngineImpl implements Engine {
     @Override
     public void run() {
         while (true) {
-            String result = null;
+            String result;
             try {
                 result = processInput();
 
@@ -31,7 +31,6 @@ public class EngineImpl implements Engine {
             } catch (NullPointerException | IllegalArgumentException | IOException e) {
                 result = e.getMessage();
             }
-
             System.out.println(result);
         }
     }
@@ -56,13 +55,11 @@ public class EngineImpl implements Engine {
                 break;
             case Fight:
                 result = this.controller.fight();
-
                 break;
             case Exit:
                 result = Command.Exit.name();
                 break;
         }
-
         return result;
     }
 }

@@ -10,57 +10,39 @@ public class GangNeighbourhood implements Neighbourhood {
 
     @Override
     public void action(Player mainPlayer, Collection<Player> civilPlayers) {
-        boolean allCiviesAreDead = false;
-        boolean hasGuns = true;
+        this.mainPlayerAttacksNPCs(mainPlayer, civilPlayers);
 
-        ArrayDeque<Gun> guns = new ArrayDeque<>();
-        mainPlayer.getGunRepository().getModels().forEach(guns::offer);
+        this.NPCsAttackMainPlayer(mainPlayer, civilPlayers);
+    }
 
-        Gun currentGun;
-        if (!guns.isEmpty()) {
-            currentGun = guns.poll();
+    private void mainPlayerAttacksNPCs(Player mainPlayer, Collection<Player> civilPlayers) {
+        for (Player civilPlayer : civilPlayers) {
+            this.shootEnemy(mainPlayer, civilPlayer);
+        }
+    }
 
-            for (Player civilPlayer : civilPlayers) {
-                if (guns.isEmpty() && !currentGun.canFire()) {
-                    break;
-                }
-                if (!currentGun.canFire()) {
-                    mainPlayer.getGunRepository().remove(currentGun);
-                    currentGun = guns.poll();
-                }
-
-                while (civilPlayer.isAlive() && currentGun.canFire()) {
-                    int dmg = currentGun.fire();
-                    civilPlayer.takeLifePoints(dmg);
-                }
+    private void NPCsAttackMainPlayer(Player mainPlayer, Collection<Player> civilPlayers) {
+        for (Player civilPlayer : civilPlayers) {
+            if (!mainPlayer.isAlive()) {
+                break;
             }
+            if (civilPlayer.isAlive()) {
+                this.shootEnemy(civilPlayer, mainPlayer);
+            }
+        }
+    }
 
-            for (Player civilPlayer : civilPlayers) {
-                if (!mainPlayer.isAlive()) {
-                    break;
-                }
+    private void shootEnemy(Player attacker, Player victim) {
+        ArrayDeque<Gun> arsenal = new ArrayDeque<>();
+        attacker.getGunRepository().getModels().forEach(arsenal::offer);
 
-                if (civilPlayer.isAlive()) {
-                    ArrayDeque<Gun> civieArsenal = new ArrayDeque<>();
-                    civilPlayer.getGunRepository().getModels().forEach(civieArsenal::offer);
+        while (!arsenal.isEmpty() && victim.isAlive()) {
+            Gun currentGun = arsenal.poll();
 
-                    while (!civieArsenal.isEmpty()) {
-                        Gun currentWeapon = civieArsenal.poll();
-                        while (mainPlayer.isAlive() && currentWeapon.canFire()) {
-                            int dmg = currentWeapon.fire();
-                            mainPlayer.takeLifePoints(dmg);
-                        }
-                        if (!currentWeapon.canFire()) {
-                            civilPlayer.getGunRepository().remove(currentWeapon);
-                        }
-                        if (!mainPlayer.isAlive()) {
-                            break;
-                        }
-                    }
-                }
-
+            while (currentGun.canFire() && victim.isAlive()) {
+                int dmg = currentGun.fire();
+                victim.takeLifePoints(dmg);
             }
         }
     }
 }
-
