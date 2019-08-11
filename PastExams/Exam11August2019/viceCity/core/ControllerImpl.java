@@ -90,6 +90,7 @@ public class ControllerImpl implements Controller {
         }
         return output;
     }
+    
     private Gun getAGunFromQueue() {
         return this.gunQueue.poll();
     }
