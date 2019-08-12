@@ -5,6 +5,7 @@ import viceCity.models.players.Player;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class GangNeighbourhood implements Neighbourhood {
 
@@ -33,11 +34,10 @@ public class GangNeighbourhood implements Neighbourhood {
     }
 
     private void shootEnemy(Player attacker, Player victim) {
-        ArrayDeque<Gun> arsenal = new ArrayDeque<>();
-        attacker.getGunRepository().getModels().forEach(arsenal::offer);
+        Iterator<Gun> armory = attacker.getGunRepository().getModels().iterator();
 
-        while (!arsenal.isEmpty() && victim.isAlive()) {
-            Gun currentGun = arsenal.poll();
+        while (armory.hasNext() && victim.isAlive()) {
+            Gun currentGun = armory.next();
 
             while (currentGun.canFire() && victim.isAlive()) {
                 int dmg = currentGun.fire();
