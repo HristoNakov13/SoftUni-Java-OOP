@@ -7,6 +7,6 @@ public class Rifle extends BaseGun {
 
     public Rifle(String name) {
         super(name, RIFLE_MAGAZINE_CAPACITY, DEFAULT_INITIAL_AMMO);
-        super.setBulletsPerShot(BULLETS_FIRED_PER_SHOT);
+        super.setFiredBulletsPerShot(BULLETS_FIRED_PER_SHOT);
     }
 }

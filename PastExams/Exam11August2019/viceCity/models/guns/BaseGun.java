@@ -23,7 +23,7 @@ public abstract class BaseGun implements Gun {
         this.name = name;
     }
 
-    protected void setBulletsPerShot(int bulletsPerShot) {
+    protected void setFiredBulletsPerShot(int bulletsPerShot) {
         this.bulletsPerShot = bulletsPerShot;
     }
 
@@ -72,7 +72,7 @@ public abstract class BaseGun implements Gun {
 
     @Override
     public int fire() {
-        if (this.getMagazine() == 0) {
+        if (this.getMagazine() < this.bulletsPerShot) {
             this.reload();
         }
         this.magazine -= bulletsPerShot;
